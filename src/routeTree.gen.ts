@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LearningPathsRouteImport } from './routes/learning-paths'
 import { Route as LibraryRouteImport } from './routes/library'
+import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as LibraryIdRouteImport } from './routes/library_.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const LibraryRoute = LibraryRouteImport.update({
   path: '/library',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LibraryIdRoute = LibraryIdRouteImport.update({
   id: '/library_/$id',
   path: '/library/$id',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/learning-paths': typeof LearningPathsRoute
   '/library': typeof LibraryRoute
+  '/sign-in': typeof SignInRoute
   '/library/$id': typeof LibraryIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/learning-paths': typeof LearningPathsRoute
   '/library': typeof LibraryRoute
+  '/sign-in': typeof SignInRoute
   '/library/$id': typeof LibraryIdRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,28 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/learning-paths': typeof LearningPathsRoute
   '/library': typeof LibraryRoute
+  '/sign-in': typeof SignInRoute
   '/library_/$id': typeof LibraryIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/learning-paths' | '/library' | '/library/$id'
+  fullPaths: '/' | '/learning-paths' | '/library' | '/sign-in' | '/library/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/learning-paths' | '/library' | '/library/$id'
-  id: '__root__' | '/' | '/learning-paths' | '/library' | '/library_/$id'
+  to: '/' | '/learning-paths' | '/library' | '/sign-in' | '/library/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/learning-paths'
+    | '/library'
+    | '/sign-in'
+    | '/library_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LearningPathsRoute: typeof LearningPathsRoute
   LibraryRoute: typeof LibraryRoute
+  SignInRoute: typeof SignInRoute
   LibraryIdRoute: typeof LibraryIdRoute
 }
 
@@ -92,6 +108,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/library_/$id': {
       id: '/library_/$id'
       path: '/library/$id'
@@ -106,6 +129,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LearningPathsRoute: LearningPathsRoute,
   LibraryRoute: LibraryRoute,
+  SignInRoute: SignInRoute,
   LibraryIdRoute: LibraryIdRoute,
 }
 export const routeTree = rootRouteImport
