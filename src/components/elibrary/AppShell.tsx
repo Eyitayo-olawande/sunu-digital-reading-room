@@ -6,6 +6,7 @@ import {
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import type { MockUser, Role } from "./mock-data";
+import { CorporateLogo } from "./CorporateLogo";
 
 const employeeNav = [
   { label: "Overview", icon: Home },
@@ -45,13 +46,7 @@ function Sidebar({ user, active, onSelect, onClose }: { user: MockUser; active: 
   return (
     <aside className="flex h-full w-[256px] flex-col text-sidebar-foreground" style={{ background: "var(--gradient-sidebar)" }}>
       <div className="flex items-center justify-between px-6 pt-6">
-        <div className="flex items-center gap-3">
-          <BookOpen className="h-9 w-9 shrink-0" strokeWidth={1.5} />
-          <div className="leading-tight">
-            <div className="text-2xl font-bold tracking-tight">SUNU</div>
-            <div className="text-sm text-sidebar-foreground/90">Assurances Nigeria</div>
-          </div>
-        </div>
+        <CorporateLogo className="max-h-14 max-w-[150px] drop-shadow-[0_0_6px_rgba(255,255,255,0.35)]" />
         {onClose && <button onClick={onClose} aria-label="Close menu"><X className="h-5 w-5" /></button>}
       </div>
       <div className="mx-6 my-5 border-t border-sidebar-border" />

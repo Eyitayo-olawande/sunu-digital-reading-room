@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { BookOpen, GraduationCap, ChartNoAxesColumnIncreasing, Lightbulb, UserRound, LockKeyhole, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CorporateLogo } from "./CorporateLogo";
 import office from "@/assets/signin-office.jpg";
 
 const benefits = [
@@ -22,7 +23,7 @@ export function SignInView() {
       <img className="signin-photo" src={office} alt="SUNU professional learning at her laptop in the office" />
       <div className="signin-photo-shade" aria-hidden />
       <div className="signin-branding">
-        <div className="min-w-0"><p className="text-2xl font-bold">SUNU</p><p className="text-sm">Assurances Nigeria</p></div>
+        <div className="min-w-0"><CorporateLogo className="max-h-12 max-w-[120px] drop-shadow-[0_0_6px_rgba(255,255,255,0.4)]" /></div>
         <div className="signin-brand-divider" />
         <div><p className="text-2xl font-bold">eLibrary</p><p className="text-sm">Knowledge &amp; Learning Hub</p></div>
       </div>
