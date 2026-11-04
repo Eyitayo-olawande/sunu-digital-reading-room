@@ -42,7 +42,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
       {/* Header banner */}
       <section className="relative overflow-hidden rounded-xl bg-card">
         <img src={heroAsset.url} alt="SUNU colleague reviewing a document on her laptop" width={2172} height={724}
-          className="absolute inset-0 h-full w-full object-cover object-right" />
+          className="absolute inset-0 h-full w-full object-cover object-[100%_22%]" />
         <div className="absolute inset-0 bg-gradient-to-r from-card from-20% via-card/80 via-45% to-transparent to-75% md:from-card/95 md:from-10% md:via-card/50 md:via-35% md:to-60%" />
         <div className="relative max-w-xl px-6 py-6 sm:px-10 md:py-8">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Knowledge Library</h1>
