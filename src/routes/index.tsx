@@ -4,7 +4,7 @@ import { AppShell } from "@/components/elibrary/AppShell";
 import { mockUsers, type Role } from "@/components/elibrary/mock-data";
 import { AdminStats } from "@/components/elibrary/AdminStats";
 import {
-  CertificateTeaser, FeaturedResources, LearningJourney, LearningProgressCard,
+  FeaturedResources, LearningJourney, LearningProgressCard,
   NextModuleCard, QuickAccess, RecentNotices, WelcomeBanner,
 } from "@/components/elibrary/DashboardWidgets";
 
