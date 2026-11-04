@@ -181,10 +181,15 @@ function StatusBadge({ s }: { s: DocStatus }) {
 
 function ResourceCard({ r, saved, onSave, onOpen, canManage }: { r: LibraryResource; saved: boolean; onSave: () => void; onOpen: () => void; canManage: boolean }) {
   return (
-    <article className={cn(card, "flex flex-col overflow-hidden")}>
+    <article
+      onClick={onOpen}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(); } }}
+      role="button" tabIndex={0} aria-label={`Open ${r.title}`}
+      className={cn(card, "flex cursor-pointer flex-col overflow-hidden transition-shadow hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary")}
+    >
       <div className="relative h-32 shrink-0 @md:h-[104px]">
         <img src={r.image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-        <button onClick={onSave} aria-label={saved ? "Remove from saved" : "Save resource"} aria-pressed={saved}
+        <button onClick={(e) => { e.stopPropagation(); onSave(); }} aria-label={saved ? "Remove from saved" : "Save resource"} aria-pressed={saved}
           className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-md bg-card/95">
           <Bookmark className={cn("h-4 w-4", saved && "fill-primary text-primary")} />
         </button>
@@ -195,7 +200,7 @@ function ResourceCard({ r, saved, onSave, onOpen, canManage }: { r: LibraryResou
           <h3 className="text-[15px] font-semibold leading-snug">{r.title}</h3>
           <p className="mt-1 text-xs text-muted-foreground">{r.department} • {r.size} • {r.format}</p>
         </div>
-        <button onClick={onOpen} aria-label={`Open ${r.title}`} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border hover:bg-muted"><Eye className="h-4 w-4" /></button>
+        <button onClick={(e) => { e.stopPropagation(); onOpen(); }} aria-label={`Open ${r.title} details`} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border hover:bg-muted"><Eye className="h-4 w-4" /></button>
       </div>
     </article>
   );
