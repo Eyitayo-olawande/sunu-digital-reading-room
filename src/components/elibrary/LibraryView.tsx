@@ -252,6 +252,11 @@ function FilterPanel({ f, setF, base, all, canManage, toggleType, toggleStatus, 
 }
 
 function ResourceDetail({ r, canManage, onClose }: { r: LibraryResource; canManage: boolean; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
   const rows: [string, string][] = [["Type", r.type], ["Department", r.department], ["Topic", r.topic], ["Format", `${r.format} • ${r.size}`], ["Last updated", r.updated], ["Owner", r.owner]];
   if (canManage) rows.push(["Status", r.status], ["Next review", "Apr 2027"]);
   return (
