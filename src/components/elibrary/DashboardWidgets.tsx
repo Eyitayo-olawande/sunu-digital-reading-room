@@ -9,7 +9,7 @@ const card = "rounded-xl border border-border bg-card shadow-[var(--shadow-card)
 
 export function WelcomeBanner({ name, subtitle = "Your learning, library and knowledge hub at SUNU Assurances Nigeria.", withStats = false }: { name: string; subtitle?: string; withStats?: boolean }) {
   return (
-    <section className={cn("relative rounded-xl", withStats ? "h-[260px]" : "mt-[38px] h-[200px]")}>
+    <section className={cn("relative rounded-xl", withStats ? "h-[260px]" : "h-[200px] md:mt-[38px]")}>
       <div
         className="absolute inset-0 overflow-hidden rounded-xl bg-card bg-cover bg-[position:60%_center] md:bg-center"
         style={{ backgroundImage: `url(${bannerAsset.url})` }}
@@ -19,7 +19,7 @@ export function WelcomeBanner({ name, subtitle = "Your learning, library and kno
         alt="Two SUNU colleagues collaborating at a laptop"
         className="pointer-events-none absolute bottom-0 right-2 z-20 hidden h-[calc(100%+12px)] w-auto max-w-[58%] object-contain object-bottom md:block lg:right-6 lg:h-[calc(100%+42px)]"
       />
-      <div className={cn("relative flex h-full flex-col justify-center px-6 sm:px-10", withStats ? "max-w-xl" : "max-w-[42%]")}>
+      <div className={cn("relative flex h-full flex-col justify-center px-6 sm:px-10", withStats ? "max-w-xl" : "max-w-full md:max-w-[42%]")}>
         <h1 className="whitespace-nowrap text-2xl font-extrabold tracking-tight sm:text-[26px] sm:leading-tight xl:text-[34px]">
           Welcome back, <span className="text-primary">{name}</span>
         </h1>
