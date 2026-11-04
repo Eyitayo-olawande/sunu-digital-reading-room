@@ -1,7 +1,7 @@
 import { ArrowRight, BookOpen, Bell, Calendar, Check, GraduationCap, Library, Lock, Play, Bookmark, Layers, Megaphone, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 import bannerAsset from "@/assets/office_background.jpg.asset.json";
-import cutoutAsset from "@/assets/professionals_cutout.png.asset.json";
+import cutoutAsset from "@/assets/professionals_cutout_v2.png.asset.json";
 import moduleImg from "@/assets/module-claim.jpg";
 import { journey, learning, nextModule, notices, resources } from "./mock-data";
 
