@@ -27,8 +27,8 @@ export function WelcomeBanner({ name, subtitle = "Your learning, library and kno
           />
         </div>
       )}
-      <div className="relative flex h-full max-w-xl flex-col justify-center px-6 sm:px-10">
-        <h1 className="whitespace-nowrap text-2xl font-extrabold tracking-tight sm:text-[34px] sm:leading-tight">
+      <div className={cn("relative flex h-full flex-col justify-center px-6 sm:px-10", withStats ? "max-w-xl" : "max-w-[42%]")}>
+        <h1 className="whitespace-nowrap text-2xl font-extrabold tracking-tight sm:text-[26px] sm:leading-tight xl:text-[34px]">
           Welcome back, <span className="text-primary">{name}</span>
         </h1>
         <p className="mt-2 max-w-md text-base text-foreground/80 sm:text-lg">{subtitle}</p>
