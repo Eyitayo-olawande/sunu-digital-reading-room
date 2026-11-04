@@ -166,7 +166,7 @@
 .learning-progress::-moz-progress-bar { background: var(--primary); border-radius: var(--radius); }
 
 .admin-banner { min-height: 390px; }
-.admin-banner-person { right: 0; bottom: 0; height: 180px; max-width: 100%; object-fit: contain; object-position: bottom right; }
+.admin-banner-person { right: 0; bottom: 0; height: 180px; width: auto; max-width: 100%; object-fit: contain; object-position: bottom right; }
 .admin-banner-fade { background: linear-gradient(90deg, var(--card) 20%, transparent 80%); }
 .admin-department-row { grid-template-columns: minmax(0, 1fr) minmax(40px, 1.3fr) 14px; }
 .admin-journey { display: grid; gap: 16px; }
@@ -178,9 +178,9 @@
   .admin-journey-stage { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
   .admin-journey-stage:not(:last-child)::after { left: 50%; right: -50%; top: 17px; bottom: auto; width: auto; height: 3px; }
 }
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   .admin-banner { min-height: 180px; height: 180px; margin-top: 30px; }
-  .admin-banner-copy { max-width: 55%; }
+  .admin-banner-copy { max-width: 51%; }
   .admin-banner-copy h1 { font-size: 28px; }
   .admin-banner-person { height: 215px; max-width: 49%; }
 }

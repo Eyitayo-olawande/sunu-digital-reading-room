@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Users, Layers, GraduationCap, ClipboardList, Lock, BookOpen, Megaphone, History, ChartNoAxesColumn, ArrowRight, CircleHelp } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import office from "@/assets/office_background.jpg.asset.json";
+import office from "@/assets/administrator-office.png.asset.json";
 import colleagues from "@/assets/administrator-colleagues.png.asset.json";
 import { adminSummary } from "./admin-data";
 

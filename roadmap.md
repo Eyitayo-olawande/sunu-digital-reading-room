@@ -1,4 +1,5 @@
 # Administrator Dashboard
+- [ ] Use the supplied maroon-swoosh office background as a separate clipped layer.
 - [ ] Use the supplied collaborative cut-out with heads extending above the banner.
 - [ ] Match the administrator master using existing imagery and supported records.
 - [ ] Test metric rules, supported shortcuts and requested responsive widths.
