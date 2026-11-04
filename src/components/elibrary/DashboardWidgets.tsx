@@ -6,16 +6,16 @@ import { journey, learning, nextModule, notices, resources } from "./mock-data";
 
 const card = "rounded-xl border border-border bg-card shadow-[var(--shadow-card)]";
 
-export function WelcomeBanner({ name, image = banner }: { name: string; image?: string }) {
+export function WelcomeBanner({ name, image = banner, subtitle = "Continue your learning, access key resources and stay updated.", withStats = false }: { name: string; image?: string; subtitle?: string; withStats?: boolean }) {
   return (
     <section className={cn(card, "relative overflow-hidden")}>
       <img src={image} alt="Two SUNU colleagues collaborating at a laptop" width={1920} height={640} className="absolute inset-0 h-full w-full object-cover object-[75%_center]" />
       <div className="absolute inset-0 bg-gradient-to-r from-card via-card/85 to-transparent md:via-card/60" />
-      <div className="relative max-w-lg px-6 py-10 sm:px-12 sm:py-14">
+      <div className={cn("relative max-w-lg px-6 py-10 sm:px-12 sm:py-14", withStats && "pb-20 sm:pb-24")}>
         <h1 className="text-3xl font-extrabold tracking-tight sm:text-[42px] sm:leading-tight">
           Welcome back, <span className="text-primary">{name}</span>
         </h1>
-        <p className="mt-3 text-base text-foreground/80 sm:text-lg">Continue your learning, access key resources and stay updated.</p>
+        <p className="mt-3 text-base text-foreground/80 sm:text-lg">{subtitle}</p>
         <div className="mt-5 h-1 w-12 rounded-full bg-primary" />
       </div>
     </section>
