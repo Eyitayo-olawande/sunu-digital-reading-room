@@ -1,4 +1,5 @@
 # Stage 4
+- [ ] Correct My Learning to the supplied visual master and verify desktop/mobile.
 - [x] Build the dedicated My Learning page with module-derived summary, tabs and viewer links.
 - [x] Verify My Learning layouts, filters and the Continue Learning flow.
 - [x] Build the Learning Paths screen and mock detail interactions.
