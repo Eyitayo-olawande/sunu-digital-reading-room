@@ -22,7 +22,7 @@ export function SignInView() {
       <img className="signin-photo" src={office} alt="SUNU professional learning at her laptop in the office" />
       <div className="signin-photo-shade" aria-hidden />
       <div className="signin-branding">
-        <div className="flex items-center gap-3"><BookOpen className="h-11 w-11 shrink-0" strokeWidth={1.5} /><div><p className="text-2xl font-bold">SUNU</p><p className="text-sm">Assurances Nigeria</p></div></div>
+        <div className="min-w-0"><p className="text-2xl font-bold">SUNU</p><p className="text-sm">Assurances Nigeria</p></div>
         <div className="signin-brand-divider" />
         <div><p className="text-2xl font-bold">eLibrary</p><p className="text-sm">Knowledge &amp; Learning Hub</p></div>
       </div>

@@ -214,12 +214,20 @@
   .signin-form-card { padding: 28px; }
 }
 @media (max-width: 479px) {
-  .signin-brand { min-height: 250px; height: 250px; }
+  .signin-screen { grid-template-rows: auto auto; align-content: start; }
+  .signin-brand { min-height: 190px; height: 190px; }
   .signin-photo { object-fit: contain; object-position: right center; width: 72%; left: auto; background: var(--sidebar); }
   .signin-brand { background: var(--sidebar); }
-  .signin-branding { gap: 12px; padding: 16px; }
+  .signin-branding { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px; padding: 12px 16px; }
+  .signin-branding > div { min-width: 0; }
+  .signin-branding > div:first-child { gap: 8px; }
+  .signin-branding svg { width: 26px; height: 26px; flex-shrink: 0; }
   .signin-branding p { font-size: 10px; }
-  .signin-brand-copy { margin-left: 20px; }
-  .signin-form-panel { padding: 20px 16px; }
-  .signin-form-card { padding: 24px 20px; border-radius: 16px; }
+  .signin-brand-copy { margin: 2px 0 16px 20px; }
+  .signin-brand-copy > div { margin-top: 8px; }
+  .signin-form-panel { align-items: start; padding: 16px 12px max(16px, env(safe-area-inset-bottom)); overflow: visible; }
+  .signin-form-panel::before { display: none; }
+  .signin-form-card { padding: 20px 16px; border-radius: 16px; }
+  .signin-form-card form { margin-top: 20px; }
+  .signin-form-card form > :not(:last-child) { margin-bottom: 16px; }
 }
