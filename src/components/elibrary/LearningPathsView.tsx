@@ -52,9 +52,9 @@ function PathCard({ path, onSelect }: { path: LearningPath; onSelect: () => void
       <span className="absolute bottom-2 left-3 rounded-md bg-primary-soft px-2 py-0.5 text-xs font-semibold text-primary">{path.category}</span>
     </Button>
     <div className="flex flex-1 flex-col gap-2 p-3">
-      <Button variant="ghost" onClick={onSelect} className="h-auto min-h-10 items-start justify-start whitespace-normal p-0 text-left text-sm font-bold leading-snug hover:bg-transparent hover:text-primary">{path.title}</Button>
+      <Button variant="ghost" onClick={onSelect} className="h-auto min-h-9 items-start justify-start whitespace-normal p-0 text-left text-sm font-bold leading-snug hover:bg-transparent hover:text-primary">{path.title}</Button>
       <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground"><BookOpen className="h-3.5 w-3.5" />{path.modules.length} modules<span aria-hidden>·</span>{path.duration}</div>
-      <div className="mt-auto flex min-h-6 flex-col justify-center">{completed ? <span className="inline-flex w-fit items-center gap-1 rounded-md bg-success/10 px-2 py-1 text-xs font-semibold text-success"><CheckCircle2 className="h-3.5 w-3.5" />Completed</span> : <ProgressBar path={path} />}</div>
+      <div className="mt-auto flex min-h-5 flex-col justify-center">{completed ? <span className="inline-flex w-fit items-center gap-1 rounded-md bg-success/10 px-2 py-0.5 text-xs font-semibold text-success"><CheckCircle2 className="h-3.5 w-3.5" />Completed</span> : <ProgressBar path={path} />}</div>
       <ModuleLink path={path} outline={statusFor(path) !== "In Progress"} className="w-fit min-w-28">{action}</ModuleLink>
     </div>
   </article>;
@@ -86,7 +86,7 @@ export function LearningPathsView() {
     <section className="relative isolate overflow-hidden rounded-xl bg-card">
       <div className="absolute inset-0 hidden overflow-hidden lg:block"><img src={hero.url} alt="SUNU professional at her laptop" className="absolute right-0 h-full w-auto max-w-none object-contain" style={{ maskImage: "linear-gradient(to right, transparent, var(--foreground) 38%)", WebkitMaskImage: "linear-gradient(to right, transparent, var(--foreground) 38%)" }} /><div className="absolute inset-0 bg-gradient-to-r from-card from-20% via-card/60 via-42% to-transparent to-65%" /></div>
       <div className="relative z-10 max-w-xl px-6 py-6 sm:px-8 lg:py-7"><h1 className="text-3xl font-extrabold sm:text-4xl">Learning <span className="text-primary">Paths</span></h1><p className="mt-2 max-w-md text-base leading-relaxed">Structured learning to build your knowledge and meet your role requirements.</p><div className="mt-3 h-1 w-14 rounded-full bg-primary" /></div>
-      <div className="relative lg:hidden"><img src={hero.url} alt="SUNU professional at her laptop" className="block h-auto w-full" /><div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-5 bg-gradient-to-b from-card to-transparent" /></div>
+      <div className="relative lg:hidden"><img src={hero.url} alt="SUNU professional at her laptop" className="block h-auto w-full" /><div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-card to-transparent" /></div>
     </section>
     <div className="grid items-start gap-5 min-[1440px]:grid-cols-[minmax(0,1fr)_310px]">
       <div className="min-w-0 space-y-4">
