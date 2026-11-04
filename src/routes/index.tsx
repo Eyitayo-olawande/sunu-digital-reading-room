@@ -36,15 +36,15 @@ function Index() {
         ) : (
           <WelcomeBanner name={user.firstName} />
         )}
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-4 xl:grid-cols-2">
           <LearningProgressCard />
           <LearningJourney />
         </div>
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-4 min-[1440px]:grid-cols-2">
           <NextModuleCard />
           <QuickAccess />
         </div>
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,7fr)_minmax(0,3fr)]">
+        <div className="grid gap-4 min-[1440px]:grid-cols-[minmax(0,7fr)_minmax(0,3fr)]">
           <FeaturedResources />
           <RecentNotices />
         </div>
