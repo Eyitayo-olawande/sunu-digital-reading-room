@@ -1,24 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { AppShell } from "@/components/elibrary/AppShell";
+import { mockUsers, type Role } from "@/components/elibrary/mock-data";
+import {
+  CertificateTeaser, FeaturedResources, LearningJourney, LearningProgressCard,
+  NextModuleCard, QuickAccess, RecentNotices, WelcomeBanner,
+} from "@/components/elibrary/DashboardWidgets";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Overview | SUNU eLibrary" },
+      { name: "description", content: "SUNU Assurances Nigeria knowledge and learning hub: learning paths, library resources and notices." },
+      { property: "og:title", content: "Overview | SUNU eLibrary" },
+      { property: "og:description", content: "Your learning, library and knowledge hub at SUNU Assurances Nigeria." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [role, setRole] = useState<Role>("employee");
+  const user = mockUsers[role];
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <AppShell user={user} onRoleChange={setRole}>
+      <div className="mx-auto max-w-[1400px] space-y-6">
+        <WelcomeBanner name={user.firstName} />
+        <div className="grid gap-6 xl:grid-cols-2">
+          <LearningProgressCard />
+          <NextModuleCard />
+        </div>
+        <LearningJourney />
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+          <div className="min-w-0 space-y-6">
+            <QuickAccess />
+            <FeaturedResources />
+          </div>
+          <div className="min-w-0 space-y-6">
+            <RecentNotices />
+            <CertificateTeaser />
+          </div>
+        </div>
+      </div>
+    </AppShell>
   );
 }
