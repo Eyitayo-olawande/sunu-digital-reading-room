@@ -8,3 +8,4 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+- Document viewer chooses its layout per file format in src/components/elibrary/viewer-data.ts (viewerKindFor); add new formats there so controls stay format-appropriate.
