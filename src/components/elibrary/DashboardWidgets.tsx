@@ -1,6 +1,7 @@
 import { ArrowRight, BookOpen, Bell, Calendar, Check, GraduationCap, Library, Lock, Play, Bookmark, Layers, Megaphone, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 import bannerAsset from "@/assets/colleagues_banner.jpg.asset.json";
+import cutoutAsset from "@/assets/colleagues_cutout.png.asset.json";
 import moduleImg from "@/assets/module-claim.jpg";
 import { journey, learning, nextModule, notices, resources } from "./mock-data";
 
@@ -8,15 +9,26 @@ const card = "rounded-xl border border-border bg-card shadow-[var(--shadow-card)
 
 export function WelcomeBanner({ name, subtitle = "Your learning, library and knowledge hub at SUNU Assurances Nigeria.", withStats = false }: { name: string; subtitle?: string; withStats?: boolean }) {
   return (
-    <section className={cn("relative overflow-hidden rounded-xl bg-card", withStats ? "h-[260px]" : "h-[200px]")}>
-      <img
-        src={bannerAsset.url}
-        alt="Two SUNU colleagues collaborating at a laptop"
-        className="absolute inset-y-0 right-0 h-full w-full object-cover object-[center_20%] md:w-[62%]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-card via-card/90 to-card/20 md:via-card md:via-[38%] md:to-transparent md:to-[60%]" />
-      <div className="relative flex h-full max-w-xl flex-col justify-center px-6 sm:px-10">
-        <h1 className="whitespace-nowrap text-2xl font-extrabold tracking-tight sm:text-[34px] sm:leading-tight">
+    <section className={cn("relative rounded-xl", withStats ? "h-[260px]" : "mt-[38px] h-[200px]")}>
+      <div className="absolute inset-0 overflow-hidden rounded-xl bg-card">
+        <img
+          src={bannerAsset.url}
+          alt="Two SUNU colleagues collaborating at a laptop"
+          className="absolute inset-y-0 right-0 h-full w-full object-cover object-[center_20%] md:w-[62%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/90 to-card/20 md:via-card md:via-[38%] md:to-transparent md:to-[60%]" />
+      </div>
+      {!withStats && (
+        <div className="pointer-events-none absolute inset-x-0 -top-[70px] bottom-0 z-20 overflow-hidden">
+          <img
+            src={cutoutAsset.url}
+            alt=""
+            className="absolute right-0 top-[20px] hidden h-[250px] w-full object-cover object-top md:block md:w-[62%]"
+          />
+        </div>
+      )}
+      <div className={cn("relative flex h-full flex-col justify-center px-6 sm:px-10", withStats ? "max-w-xl" : "max-w-[42%]")}>
+        <h1 className="whitespace-nowrap text-2xl font-extrabold tracking-tight sm:text-[26px] sm:leading-tight xl:text-[34px]">
           Welcome back, <span className="text-primary">{name}</span>
         </h1>
         <p className="mt-2 max-w-md text-base text-foreground/80 sm:text-lg">{subtitle}</p>
