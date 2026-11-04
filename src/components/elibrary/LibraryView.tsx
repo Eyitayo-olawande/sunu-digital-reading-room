@@ -4,6 +4,7 @@ import {
   LayoutGrid, List, Bookmark, Eye, X, Download, Pencil, SlidersHorizontal, SearchX,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
 import heroAsset from "@/assets/library_banner.png.asset.json";
 import {
   departments, docTypes, filterResources, libraryResources, statuses, topics,
@@ -259,14 +260,13 @@ function ResourceDetail({ r, canManage, onClose }: { r: LibraryResource; canMana
             {rows.map(([k, v]) => <div key={k}><dt className="text-muted-foreground">{k}</dt><dd className="font-medium">{v}</dd></div>)}
           </dl>
           <div className="mt-6 flex flex-wrap gap-2">
-            <button className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 font-semibold text-primary-foreground"><Eye className="h-4 w-4" /> Open in viewer</button>
+            <Link to="/library/$id" params={{ id: r.id }} className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 font-semibold text-primary-foreground"><Eye className="h-4 w-4" /> Open in viewer</Link>
             {canManage && <>
               <button className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 font-semibold"><Download className="h-4 w-4" /> Download</button>
               <button className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 font-semibold"><Pencil className="h-4 w-4" /> Manage</button>
             </>}
           </div>
           {!canManage && <p className="mt-3 text-xs text-muted-foreground">This document opens in your browser. Downloads are restricted.</p>}
-          <p className="mt-2 text-xs text-muted-foreground">The document viewer will be available in the next stage.</p>
         </div>
       </div>
     </div>
