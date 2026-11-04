@@ -42,8 +42,8 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
       {/* Header banner */}
       <section className="relative overflow-hidden rounded-xl bg-card">
         <img src={heroImg} alt="SUNU colleague reviewing a document on her laptop" width={1600} height={560}
-          className="absolute inset-0 h-full w-full object-cover object-[75%_center]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/85 to-card/0 md:via-card/60" />
+          className="absolute inset-0 h-full w-full object-cover object-[75%_20%]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/90 to-card/40 md:via-card/60 md:to-card/0" />
         <div className="relative max-w-xl px-6 py-7 sm:px-10 md:py-10">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Knowledge Library</h1>
           <p className="mt-2 text-base text-foreground/80 sm:text-lg">Find policies, procedures, guidelines and learning materials to support your work.</p>
@@ -119,7 +119,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
               <button onClick={clear} className="mt-4 rounded-lg bg-primary px-5 py-2 font-semibold text-primary-foreground">Clear all filters</button>
             </div>
           ) : view === "grid" ? (
-            <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3 min-[1400px]:grid-cols-4">
               {results.map((r) => <ResourceCard key={r.id} r={r} saved={saved.includes(r.id)} onSave={() => setSaved((s) => s.includes(r.id) ? s.filter((x) => x !== r.id) : [...s, r.id])} onOpen={() => setOpen(r)} canManage={canManage} />)}
             </div>
           ) : (
@@ -160,7 +160,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
 
 function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
-    <button onClick={onClick} aria-pressed={on} className={cn("rounded-full border px-4 py-1.5 text-sm font-medium",
+    <button onClick={onClick} aria-pressed={on} className={cn("rounded-full border px-3.5 py-1.5 text-sm font-medium",
       on ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card hover:bg-muted")}>{children}</button>
   );
 }
