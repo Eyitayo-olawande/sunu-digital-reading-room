@@ -167,7 +167,7 @@
 
 .my-learning-photo { mask-image: linear-gradient(to right, transparent, var(--foreground) 35%); }
 .my-learning-aside { grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 640px) and (max-width: 1439px) {
+@media (min-width: 640px) and (max-width: 1199px) {
   .my-learning-aside { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
