@@ -14,13 +14,14 @@ export function WelcomeBanner({ name, subtitle = "Your learning, library and kno
         className="absolute inset-0 overflow-hidden rounded-xl bg-card bg-cover bg-[position:60%_center] md:bg-center"
         style={{ backgroundImage: `url(${bannerAsset.url})` }}
       />
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-card/90 via-card/75 to-card/20 md:hidden" />
       <img
         src={cutoutAsset.url}
         alt="Two SUNU colleagues collaborating at a laptop"
         className="pointer-events-none absolute bottom-0 right-2 z-20 hidden h-[calc(100%+12px)] w-auto max-w-[58%] object-contain object-bottom md:block lg:right-6 lg:h-[calc(100%+42px)]"
       />
       <div className={cn("relative flex h-full flex-col justify-center px-6 sm:px-10", withStats ? "max-w-xl" : "max-w-full md:max-w-[42%]")}>
-        <h1 className="whitespace-nowrap text-2xl font-extrabold tracking-tight sm:text-[26px] sm:leading-tight xl:text-[34px]">
+        <h1 className="sm:whitespace-nowrap text-2xl font-extrabold tracking-tight sm:text-[26px] sm:leading-tight xl:text-[34px]">
           Welcome back, <span className="text-primary">{name}</span>
         </h1>
         <p className="mt-2 max-w-md text-base text-foreground/80 sm:text-lg">{subtitle}</p>
@@ -71,7 +72,7 @@ const stageDesc: Record<string, string> = {
 
 export function LearningJourney() {
   return (
-    <section className={cn(card, "h-full p-5")}>
+    <section className={cn(card, "@container h-full min-w-0 p-5")}>
       <div className="flex items-start gap-3">
         <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary"><Layers className="h-5 w-5" /></span>
         <div className="min-w-0">
@@ -79,24 +80,24 @@ export function LearningJourney() {
           <p className="text-sm text-muted-foreground">A structured path to build your knowledge and meet role requirements.</p>
         </div>
       </div>
-      <ol className="mt-4 grid grid-cols-4">
+      <ol className="mt-4 grid gap-2 @md:grid-cols-4 @md:gap-0">
         {journey.map((s, i) => {
           const prevDone = i > 0 && journey[i - 1]?.state === "completed";
           return (
-            <li key={s.label} className={cn("relative flex flex-col items-center rounded-lg px-1 pb-2 text-center", s.state === "current" && "bg-primary-soft")}>
+            <li key={s.label} className={cn("relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-3 rounded-lg px-2 py-1.5 text-left @md:flex @md:flex-col @md:items-center @md:px-1 @md:pb-2 @md:pt-0 @md:text-center", s.state === "current" && "bg-primary-soft")}>
               {i > 0 && (
-                <span className={cn("absolute right-1/2 top-[18px] h-0.5 w-full",
+                <span className={cn("absolute right-1/2 top-[18px] hidden h-0.5 w-full @md:block",
                   s.state === "completed" ? "bg-success" : s.state === "current" && prevDone ? "bg-primary" : "bg-border")} />
               )}
               <span className={cn(
-                "relative z-10 grid h-9 w-9 place-items-center rounded-full",
+                "relative z-10 row-span-2 grid h-9 w-9 place-items-center rounded-full",
                 s.state === "completed" && "bg-success text-primary-foreground",
                 s.state === "current" && "border-[3px] border-primary bg-card",
                 s.state === "upcoming" && "bg-muted text-muted-foreground",
               )}>
                 {s.state === "completed" ? <Check className="h-5 w-5" /> : s.state === "upcoming" ? <Lock className="h-4 w-4" /> : null}
               </span>
-              <span className="mt-2 text-sm font-bold">{s.label}</span>
+              <span className="text-sm font-bold @md:mt-2">{s.label}</span>
               <span className={cn("text-xs leading-snug", s.state === "current" ? "text-primary" : "text-muted-foreground")}>{stageDesc[s.label] ?? s.note}</span>
             </li>
           );
@@ -108,7 +109,8 @@ export function LearningJourney() {
 
 export function NextModuleCard() {
   return (
-    <section className={cn(card, "flex h-full gap-4 p-5")}>
+    <section className={cn(card, "@container h-full min-w-0 p-5")}>
+      <div className="flex flex-col-reverse gap-4 @lg:flex-row">
       <div className="flex min-w-0 flex-1 gap-4">
         <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary"><Play className="h-5 w-5" /></div>
         <div className="min-w-0">
@@ -124,7 +126,8 @@ export function NextModuleCard() {
           </button>
         </div>
       </div>
-      <img src={moduleImg} alt="Signing a motor insurance claim form" loading="lazy" width={896} height={752} className="hidden h-40 w-52 shrink-0 rounded-lg object-cover sm:block" />
+      <img src={moduleImg} alt="Signing a motor insurance claim form" loading="lazy" width={896} height={752} className="aspect-[16/9] w-full shrink-0 rounded-lg object-cover @lg:aspect-auto @lg:h-40 @lg:w-52" />
+      </div>
     </section>
   );
 }
@@ -138,11 +141,11 @@ const quick = [
 
 export function QuickAccess() {
   return (
-    <section className={cn(card, "h-full min-w-0 p-4")}>
+    <section className={cn(card, "@container h-full min-w-0 p-4")}>
       <h2 className="mb-3 text-lg font-bold">Quick Access</h2>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 @[18rem]:grid-cols-2 @2xl:grid-cols-4">
         {quick.map(({ title, desc, icon: Icon }) => (
-          <button key={title} className="rounded-lg border border-border bg-card p-3 text-left transition hover:border-primary/40">
+          <button key={title} className="min-h-11 rounded-lg border border-border bg-card p-3 text-left transition hover:border-primary/40">
             <span className="grid h-8 w-8 place-items-center rounded-md bg-primary-soft text-primary"><Icon className="h-4 w-4" /></span>
             <p className="mt-2 text-sm font-semibold leading-tight">{title}</p>
             <p className="mt-0.5 text-xs text-muted-foreground">{desc}</p>
@@ -155,16 +158,16 @@ export function QuickAccess() {
 
 export function FeaturedResources() {
   return (
-    <section className={cn(card, "h-full min-w-0 p-4")}>
+    <section className={cn(card, "@container h-full min-w-0 p-4")}>
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-lg font-bold">Featured Resources</h2>
         <button className="inline-flex items-center gap-1 text-sm font-semibold text-primary">View library <ArrowRight className="h-4 w-4" /></button>
       </div>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 @[22rem]:grid-cols-2 @3xl:grid-cols-4">
         {resources.map((r) => (
           <article key={r.title} className="overflow-hidden rounded-lg border border-border bg-card">
             <div className="relative">
-              <img src={r.image} alt={r.title} loading="lazy" width={992} height={672} className="h-20 w-full object-cover" />
+              <img src={r.image} alt={r.title} loading="lazy" width={992} height={672} className="aspect-[2/1] w-full object-cover @3xl:aspect-auto @3xl:h-20" />
               <span className="absolute bottom-1.5 left-2 rounded bg-card px-2 py-0.5 text-[11px] font-semibold text-primary">{r.category}</span>
             </div>
             <p className="px-3 py-2 text-sm font-semibold leading-snug">{r.title}</p>
@@ -191,10 +194,10 @@ export function RecentNotices() {
           {notices.map((n, i) => {
             const Icon = noticeIcons[i % noticeIcons.length] ?? Info;
             return (
-              <li key={n.title} className="flex items-center gap-3 py-2.5">
-                <Icon className="h-4 w-4 shrink-0 text-primary" />
-                <span className="min-w-0 flex-1 truncate text-sm">{n.title}</span>
-                <span className="shrink-0 text-xs text-muted-foreground">{n.date}</span>
+              <li key={n.title} className="flex items-start gap-3 py-2.5">
+                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span className="min-w-0 flex-1 text-sm">{n.title}</span>
+                <span className="shrink-0 pt-0.5 text-xs text-muted-foreground">{n.date}</span>
               </li>
             );
           })}
