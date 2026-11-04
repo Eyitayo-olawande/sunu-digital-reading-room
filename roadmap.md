@@ -4,5 +4,5 @@
 - [x] Verify desktop, tablet and mobile layouts and module navigation.
 
 # Sign-In
-- [ ] Build the isolated visual sign-in screen.
-- [ ] Verify requested widths and form controls without authenticating.
+- [x] Build the isolated visual sign-in screen.
+- [x] Verify requested widths and form controls without authenticating.

@@ -192,13 +192,15 @@
 .signin-benefits > div + div { border-left: 1px solid var(--sidebar-border); }
 .signin-form-panel { position: relative; isolation: isolate; display: grid; align-items: center; min-width: 0; overflow: hidden; padding: 50px 7%; }
 .signin-form-panel::before { content: ""; position: absolute; z-index: -1; top: -90px; right: -100px; width: 75%; height: 300px; border-radius: 0 0 0 100%; transform: rotate(-20deg); background: var(--primary-soft); }
-.signin-form-card { width: 100%; max-width: 560px; justify-self: center; border: 1px solid var(--border); border-radius: 20px; padding: 44px 40px; background: var(--card); box-shadow: var(--shadow-card); }
+.signin-form-card { width: 100%; min-width: 0; max-width: 560px; justify-self: center; border: 1px solid var(--border); border-radius: 20px; padding: 44px 40px; background: var(--card); box-shadow: var(--shadow-card); }
 @media (min-width: 1600px) { .signin-brand-copy { margin-top: 65px; } .signin-brand-copy h1 { font-size: 60px; } }
 @media (max-width: 1199px) { .signin-branding { gap: 16px; padding: 32px 7%; } .signin-brand-divider { display: none; } .signin-brand-copy { width: 48%; margin-top: 40px; } .signin-brand-copy h1 { font-size: 44px; } .signin-brand-copy p { font-size: 17px; } .signin-form-panel { padding: 32px 6%; } .signin-form-card { padding: 32px 24px; } }
 @media (max-width: 899px) {
   .signin-screen { grid-template-columns: minmax(0,1fr); }
-  .signin-brand { min-height: 280px; }
-  .signin-photo { object-position: 70% 35%; }
+  .signin-screen { grid-template-rows: auto 1fr; }
+  .signin-brand { min-height: 280px; height: 280px; }
+  .signin-photo { object-fit: contain; object-position: right center; width: 55%; left: auto; }
+  .signin-brand { background: var(--sidebar); }
   .signin-branding { padding: 20px 24px; gap: 18px; }
   .signin-branding svg { width: 32px; height: 32px; }
   .signin-branding p { font-size: 12px; }
@@ -212,7 +214,7 @@
   .signin-form-card { padding: 28px; }
 }
 @media (max-width: 479px) {
-  .signin-brand { min-height: 250px; }
+  .signin-brand { min-height: 250px; height: 250px; }
   .signin-photo { object-fit: contain; object-position: right center; width: 72%; left: auto; background: var(--sidebar); }
   .signin-brand { background: var(--sidebar); }
   .signin-branding { gap: 12px; padding: 16px; }
