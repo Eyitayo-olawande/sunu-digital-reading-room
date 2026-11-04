@@ -42,13 +42,16 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
       {/* Header banner */}
       <section className="relative overflow-hidden rounded-xl bg-card">
         <img src={heroAsset.url} alt="SUNU colleague reviewing a document on her laptop" width={2172} height={724}
-          className="absolute inset-0 h-full w-full object-cover object-[100%_22%]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-card from-20% via-card/80 via-45% to-transparent to-75% md:from-card/95 md:from-10% md:via-card/50 md:via-35% md:to-60%" />
+          style={{ WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 28%)", maskImage: "linear-gradient(to right, transparent 0%, #000 28%)" }}
+          className="absolute inset-y-0 right-0 hidden h-full w-auto max-w-none object-contain lg:block" />
+        <div className="absolute inset-0 hidden bg-gradient-to-r from-card from-20% via-card/0 via-40% to-transparent lg:block" />
         <div className="relative max-w-xl px-6 py-6 sm:px-10 md:py-8">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Knowledge Library</h1>
           <p className="mt-2 text-base text-foreground/80 sm:text-lg">Find policies, procedures, guidelines and learning materials to support your work.</p>
           <div className="mt-4 h-1 w-14 rounded-full bg-primary" />
         </div>
+        <img src={heroAsset.url} alt="" aria-hidden width={2172} height={724}
+          className="relative block h-44 w-full object-cover object-[55%_20%] sm:h-56 lg:hidden" />
       </section>
 
       <div className="grid gap-5 min-[1200px]:grid-cols-[minmax(0,1fr)_250px]">
@@ -82,7 +85,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
                 return (
                   <button key={t.name} aria-pressed={on} onClick={() => setF((p) => ({ ...p, topic: on ? "" : t.name }))}
                     className={cn("flex min-h-[96px] flex-col items-center justify-center gap-1 rounded-xl border px-2 py-2.5 text-center transition-colors",
-                      on ? "border-primary/30 bg-primary-soft" : "border-border bg-card hover:bg-muted")}>
+                      on ? "border-primary/50 bg-primary-soft ring-1 ring-primary/20" : "border-border bg-card hover:bg-muted")}>
                     <Icon className="h-6 w-6 text-primary" strokeWidth={1.7} />
                     <span className="text-sm font-semibold leading-tight">{t.name}</span>
                     <span className="text-sm text-muted-foreground">({visibleAll.filter((r) => r.topic === t.name).length})</span>
