@@ -129,14 +129,16 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
           ) : (
             <div className={cn(card, "divide-y divide-border")}>
               {results.map((r) => (
-                <div key={r.id} className="flex items-center gap-3 p-3 sm:gap-4">
+                <div key={r.id} onClick={() => setOpen(r)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(r); } }}
+                  role="button" tabIndex={0} aria-label={`Open ${r.title}`}
+                  className="flex cursor-pointer items-center gap-3 p-3 transition-colors hover:bg-muted/50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary sm:gap-4">
                   <img src={r.image} alt="" loading="lazy" className="h-14 w-20 shrink-0 rounded-md object-cover" />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2"><TypeBadge r={r} />{canManage && r.status !== "Published" && <StatusBadge s={r.status} />}</div>
                     <p className="mt-1 font-semibold leading-snug">{r.title}</p>
                     <p className="text-xs text-muted-foreground">{r.department} • {r.size} • {r.format}</p>
                   </div>
-                  <button onClick={() => setOpen(r)} aria-label={`Open ${r.title}`} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border hover:bg-muted"><Eye className="h-4 w-4" /></button>
+                  <button onClick={(e) => { e.stopPropagation(); setOpen(r); }} aria-label={`Open ${r.title} details`} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border hover:bg-muted"><Eye className="h-4 w-4" /></button>
                 </div>
               ))}
             </div>
