@@ -1,4 +1,7 @@
 # Administrator Dashboard
+- [ ] Refine KPI hierarchy, journey accents, chart empty states, actions and activity layout.
+- [ ] Reuse existing notices with explicit sample labels and audit role integrity.
+- [ ] Verify refined desktop/tablet/mobile layouts and preserve approved pages.
 - [x] Use the supplied maroon-swoosh office background as a separate clipped layer.
 - [x] Use the supplied collaborative cut-out with heads extending above the banner.
 - [x] Match the administrator master using existing imagery and supported records.
