@@ -12,3 +12,4 @@
 - Learning Paths keeps mock modules and pure progress/filter helpers in learning-data.ts, with the screen isolated in LearningPathsView; module actions reuse the existing document viewer to avoid new processing or assignment logic.
 - My Learning uses the assigned Claims Officer module records through my-learning-data.ts and an isolated MyLearningView; catalogue paths must not become employee assignments implicitly.
 - The /sign-in visual prototype is isolated in SignInView and scoped signin-* styles; submission sends no credentials and creates no session, preserving approved public screen behavior.
+- Administrator overview is isolated in AdminDashboardView with pure admin-data summaries; catalogue fixtures never become organisation staff or assignment metrics, because no authoritative organisational source or authentication exists.
