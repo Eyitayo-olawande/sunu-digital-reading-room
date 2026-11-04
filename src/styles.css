@@ -165,7 +165,7 @@
 .learning-progress::-webkit-progress-value { background: var(--primary); border-radius: var(--radius); }
 .learning-progress::-moz-progress-bar { background: var(--primary); border-radius: var(--radius); }
 
-.admin-banner { min-height: 350px; }
+.admin-banner { min-height: 390px; }
 .admin-banner-person { right: 0; bottom: 0; height: 180px; max-width: 100%; object-fit: contain; object-position: bottom right; }
 .admin-banner-fade { background: linear-gradient(90deg, var(--card) 20%, transparent 80%); }
 .admin-department-row { grid-template-columns: minmax(0, 1fr) minmax(40px, 1.3fr) 14px; }

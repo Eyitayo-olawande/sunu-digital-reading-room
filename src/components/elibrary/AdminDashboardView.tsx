@@ -3,7 +3,7 @@ import { Users, Layers, GraduationCap, ClipboardList, Lock, BookOpen, Megaphone,
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import office from "@/assets/office_background.jpg.asset.json";
-import colleagues from "@/assets/professionals_cutout_v3.png.asset.json";
+import colleagues from "@/assets/administrator-colleagues.png.asset.json";
 import { adminSummary } from "./admin-data";
 
 const panel = "min-w-0 rounded-lg border border-border bg-card p-4 shadow-[var(--shadow-card)] sm:p-5";
@@ -63,7 +63,7 @@ export function AdminDashboardView() {
           ].map(({name, note, icon: Icon}) => <li key={name} className="admin-journey-stage"><span className="admin-journey-node"><Icon className="h-4 w-4" /></span><div><h3 className="text-sm font-bold">{name}</h3><p className="mt-1 text-xs leading-snug text-muted-foreground">{note}</p></div></li>)}</ol>
           <p className="mt-3 text-xs text-muted-foreground">Stage structure only · Organisation stage totals unavailable.</p>
         </Panel>
-        <div className="grid gap-4 min-[768px]:grid-cols-2 min-[1024px]:grid-cols-1 min-[1600px]:grid-cols-2">
+        <div className="grid gap-4 min-[768px]:grid-cols-2 min-[1024px]:grid-cols-1 min-[1440px]:grid-cols-2">
           <Panel title="Quick Actions">
             <div className="mt-3 grid grid-cols-2 gap-2">
               <Button asChild variant="outline" className="h-auto min-h-20 flex-col whitespace-normal bg-primary-soft p-3 text-center text-xs"><Link to="/learning-paths"><Layers className="text-primary" />Learning Paths<ArrowRight className="text-primary" /></Link></Button>
