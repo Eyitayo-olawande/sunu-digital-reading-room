@@ -19,23 +19,23 @@ export function AdminDashboardView() {
     { label: "Learning Paths", value: data.learningPaths, note: "Sample catalogue", icon: GraduationCap },
     { label: "Active Assignments", value: data.activeAssignments, note: "Organisation records unavailable", icon: ClipboardList },
   ];
-  return <div className="mx-auto max-w-[1440px] space-y-4">
+  return <div className="admin-dashboard mx-auto max-w-[1440px] space-y-4">
     <section className="admin-banner relative isolate">
       <div className="absolute inset-0 -z-10 overflow-hidden rounded-lg bg-card">
         <img src={office.url} alt="" className="h-full w-full object-cover" />
         <div className="admin-banner-fade absolute inset-0" />
       </div>
       <img src={colleagues.url} alt="Two SUNU professionals collaborating at a laptop" className="admin-banner-person pointer-events-none absolute z-10" />
-      <div className="admin-banner-copy relative z-20 p-5 sm:p-7">
+      <div className="admin-banner-copy relative z-20">
         <h1 className="text-[28px] font-extrabold leading-tight sm:text-[32px]">Administrator <span className="text-primary">Dashboard</span></h1>
         <p className="mt-2 max-w-md text-base leading-snug">Manage learning, content, users and access across the organisation.</p>
         <div className="mt-3 h-1 w-14 rounded-full bg-primary" />
       </div>
     </section>
-    <div className="relative z-20 grid grid-cols-1 gap-3 min-[600px]:grid-cols-2 min-[1440px]:grid-cols-4">
-      {stats.map(({ label, value, note, icon: Icon }) => <article key={label} className="flex min-w-0 items-center gap-4 rounded-lg border border-border bg-card px-5 py-4 shadow-[var(--shadow-card)]">
+    <div className="admin-kpis relative z-20 grid grid-cols-1 gap-3 min-[600px]:grid-cols-2 min-[1280px]:grid-cols-4">
+      {stats.map(({ label, value, note, icon: Icon }) => <article key={label} title={note} className="admin-kpi flex min-w-0 items-center gap-4 rounded-lg border border-border bg-card shadow-[var(--shadow-card)]">
         <span className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary"><Icon className="h-8 w-8" strokeWidth={1.5} /></span>
-        <div className="min-w-0"><p className="text-[32px] font-bold leading-none tabular-nums">{value ?? "—"}</p><h2 className="mt-1.5 text-sm font-semibold">{label}</h2><p className="mt-1.5 text-xs leading-snug text-muted-foreground">{note}</p></div>
+        <div className="min-w-0"><p className="text-[32px] font-bold leading-none tabular-nums">{value ?? "—"}</p><h2 className="mt-1 text-sm font-medium">{label}</h2><span className="sr-only">{note}</span></div>
       </article>)}
     </div>
     <div className="flex items-start gap-2 text-xs text-muted-foreground"><CircleHelp className="mt-0.5 h-4 w-4 shrink-0" /><p>Visual preview only · Funke Adeyemi · Claims Department · Administrator. The role selector grants no permissions. Catalogue counts are sample records; secure access is not connected.</p></div>
