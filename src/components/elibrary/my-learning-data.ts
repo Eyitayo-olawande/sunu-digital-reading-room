@@ -9,3 +9,6 @@ export function assignmentsFor(tab: AssignmentTab): LearningModule[] {
   return assignedPath.modules.filter(m => tab === "All Assignments" || m.status === (tab === "Upcoming" ? "Not Started" : tab));
 }
 export function actionFor(m: LearningModule) { return m.status === "Completed" ? "Review" : m.status === "In Progress" ? "Continue" : "Start"; }
+export function moduleProgressFor(m: LearningModule): number | null {
+  return m.status === "Completed" ? 100 : m.status === "Not Started" ? 0 : null;
+}
