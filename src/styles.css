@@ -105,6 +105,7 @@
   --gradient-sidebar: linear-gradient(180deg, var(--primary), var(--primary-deep));
   --gradient-learning: linear-gradient(135deg, var(--primary), var(--primary-deep));
   --shadow-card: 0 1px 2px oklch(0.27 0.03 264 / 6%), 0 4px 16px -6px oklch(0.27 0.03 264 / 10%);
+  --signin-photo-shade: linear-gradient(90deg, oklch(0.15 0.01 264 / 65%), transparent 65%);
 }
 
 .dark {
@@ -175,4 +176,48 @@
 @media (min-width: 1440px) {
   .learning-summary { grid-template-columns: minmax(0, 1fr); }
   .learning-certificates { grid-column: auto; }
+}
+
+.signin-screen { display: grid; min-height: 100dvh; grid-template-columns: 55fr 45fr; background: var(--background); }
+.signin-brand { position: relative; isolation: isolate; min-width: 0; overflow: hidden; min-height: 780px; color: var(--sidebar-foreground); }
+.signin-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 65% 40%; z-index: -3; }
+.signin-photo-shade { position: absolute; inset: 0; background: var(--signin-photo-shade); z-index: -2; }
+.signin-branding { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; padding: 44px 8%; }
+.signin-brand-divider { height: 48px; border-left: 1px solid var(--sidebar-border); }
+.signin-brand-copy { position: relative; width: 43%; margin: 40px 0 230px 9%; }
+.signin-brand-copy h1 { font-size: 52px; line-height: 1.08; font-weight: 800; }
+.signin-brand-copy p { margin-top: 22px; font-size: 19px; line-height: 1.45; }
+.signin-benefits { position: absolute; inset: auto 0 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; padding: 72px 6% 36px; background: var(--gradient-sidebar); }
+.signin-benefits::before { content: ""; position: absolute; z-index: -1; top: -40px; left: -15%; width: 130%; height: 100px; border-radius: 50% 60% 0 0; background: var(--primary); transform: rotate(7deg); }
+.signin-benefits > div + div { border-left: 1px solid var(--sidebar-border); }
+.signin-form-panel { position: relative; isolation: isolate; display: grid; align-items: center; min-width: 0; overflow: hidden; padding: 50px 7%; }
+.signin-form-panel::before { content: ""; position: absolute; z-index: -1; top: -90px; right: -100px; width: 75%; height: 300px; border-radius: 0 0 0 100%; transform: rotate(-20deg); background: var(--primary-soft); }
+.signin-form-card { width: 100%; max-width: 560px; justify-self: center; border: 1px solid var(--border); border-radius: 20px; padding: 44px 40px; background: var(--card); box-shadow: var(--shadow-card); }
+@media (min-width: 1600px) { .signin-brand-copy { margin-top: 65px; } .signin-brand-copy h1 { font-size: 60px; } }
+@media (max-width: 1199px) { .signin-branding { gap: 16px; padding: 32px 7%; } .signin-brand-divider { display: none; } .signin-brand-copy { width: 48%; margin-top: 40px; } .signin-brand-copy h1 { font-size: 44px; } .signin-brand-copy p { font-size: 17px; } .signin-form-panel { padding: 32px 6%; } .signin-form-card { padding: 32px 24px; } }
+@media (max-width: 899px) {
+  .signin-screen { grid-template-columns: minmax(0,1fr); }
+  .signin-brand { min-height: 280px; }
+  .signin-photo { object-position: 70% 35%; }
+  .signin-branding { padding: 20px 24px; gap: 18px; }
+  .signin-branding svg { width: 32px; height: 32px; }
+  .signin-branding p { font-size: 12px; }
+  .signin-branding p:first-child { font-size: 19px; }
+  .signin-brand-copy { margin: 10px 0 24px 24px; width: 46%; }
+  .signin-brand-copy h1 { font-size: 30px; }
+  .signin-brand-copy p { display: none; }
+  .signin-brand-copy > div { margin-top: 12px; }
+  .signin-benefits { display: none; }
+  .signin-form-panel { padding: 24px; }
+  .signin-form-card { padding: 28px; }
+}
+@media (max-width: 479px) {
+  .signin-brand { min-height: 250px; }
+  .signin-photo { object-fit: contain; object-position: right center; width: 72%; left: auto; background: var(--sidebar); }
+  .signin-brand { background: var(--sidebar); }
+  .signin-branding { gap: 12px; padding: 16px; }
+  .signin-branding p { font-size: 10px; }
+  .signin-brand-copy { margin-left: 20px; }
+  .signin-form-panel { padding: 20px 16px; }
+  .signin-form-card { padding: 24px 20px; border-radius: 16px; }
 }
