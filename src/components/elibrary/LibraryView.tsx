@@ -179,7 +179,7 @@ function ResourceCard({ r, saved, onSave, onOpen, canManage }: { r: LibraryResou
   return (
     <article className={cn(card, "flex flex-col overflow-hidden")}>
       <div className="relative" style={{ aspectRatio: "16 / 7" }}>
-        <img src={r.image} alt="" loading="lazy" className="h-full w-full object-cover" />
+        <img src={r.image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
         <button onClick={onSave} aria-label={saved ? "Remove from saved" : "Save resource"} aria-pressed={saved}
           className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-md bg-card/95">
           <Bookmark className={cn("h-4 w-4", saved && "fill-primary text-primary")} />
