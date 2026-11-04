@@ -166,6 +166,9 @@
 .learning-progress::-moz-progress-bar { background: var(--primary); border-radius: var(--radius); }
 
 .admin-banner { min-height: 390px; }
+.admin-banner-copy { padding: 24px 20px; }
+.admin-kpis { margin-top: 8px; }
+.admin-kpi { min-height: 88px; padding: 16px 20px; }
 .admin-banner-person { right: 0; bottom: 0; height: 180px; width: auto; max-width: 100%; object-fit: contain; object-position: bottom right; }
 .admin-banner-fade { background: linear-gradient(90deg, var(--card) 20%, transparent 80%); }
 .admin-department-row { grid-template-columns: minmax(0, 1fr) minmax(40px, 1.3fr) 14px; }
@@ -189,17 +192,19 @@
   .admin-journey-stage:not(:last-child)::after { left: 50%; right: -50%; top: 17px; bottom: auto; width: auto; height: 3px; }
 }
 @media (min-width: 960px) {
-  .admin-banner { min-height: 180px; height: 180px; margin-top: 30px; }
-  .admin-banner-copy { max-width: 51%; }
-  .admin-banner-copy h1 { font-size: 28px; }
-  .admin-banner-person { height: 215px; max-width: 49%; }
+  .admin-banner { min-height: 200px; height: 200px; margin-top: 24px; }
+  .admin-banner-copy { max-width: 51%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 20px 16px; }
+  .admin-banner-copy h1 { font-size: 32px; }
+  .admin-banner-copy p { max-width: 460px; }
+  .admin-banner-person { height: 235px; max-width: 50%; }
 }
 @media (min-width: 1024px) {
   .admin-panels { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
 }
 @media (min-width: 1440px) {
-  .admin-banner-copy h1 { font-size: 32px; }
-  .admin-banner-person { height: 225px; right: 12px; }
+  .admin-banner { min-height: 210px; height: 210px; }
+  .admin-banner-copy h1 { font-size: 34px; }
+  .admin-banner-person { height: 245px; max-width: 54%; right: 12px; }
 }
 
 .my-learning-banner { min-height: 340px; }
