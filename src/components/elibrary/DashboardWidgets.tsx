@@ -23,7 +23,7 @@ export function WelcomeBanner({ name, subtitle = "Your learning, library and kno
           <img
             src={cutoutAsset.url}
             alt=""
-            className="absolute right-0 top-[-50px] aspect-[1774/887] w-full object-cover md:w-[62%]"
+            className="absolute right-0 top-[20px] hidden h-[250px] w-full object-cover object-top md:block md:w-[62%]"
           />
         </div>
       )}
