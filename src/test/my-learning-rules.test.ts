@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { assignedSummary, assignmentsFor, nextAssignment, actionFor } from "@/components/elibrary/my-learning-data";
+import { assignedSummary, assignmentsFor, nextAssignment, actionFor, moduleProgressFor } from "@/components/elibrary/my-learning-data";
 describe("Dedicated assigned learning", () => {
+  it("does not mistake overall 75% completion for Motor Claim Registration progress", () => {
+    const motor = nextAssignment();
+    if (!motor) throw new Error("Missing assigned motor module");
+    expect(moduleProgressFor(motor)).toBeNull();
+    expect(assignmentsFor("Completed").map(moduleProgressFor)).toEqual([100, 100, 100]);
+  });
   it("shows four assigned modules, three complete, one in progress and 75% overall", () => {
     expect(assignedSummary()).toEqual({ total: 4, completed: 3, inProgress: 1, notStarted: 0, percent: 75 });
   });
