@@ -3,6 +3,7 @@ import {
   BookOpen, Home, Library, GraduationCap, Bookmark, Bell, Users, ShieldCheck, Network,
   Layers, FileText, History, Search, HelpCircle, ChevronRight, ChevronDown, Menu, X,
 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import type { MockUser, Role } from "./mock-data";
 
@@ -27,18 +28,20 @@ function initials(name: string) {
 }
 
 function Sidebar({ user, active, onSelect, onClose }: { user: MockUser; active: string; onSelect: (l: string) => void; onClose?: () => void }) {
-  const Item = ({ label, icon: Icon }: { label: string; icon: typeof Home }) => (
-    <button
-      onClick={() => { onSelect(label); onClose?.(); }}
-      className={cn(
+  const routes: Record<string, "/" | "/library"> = { Overview: "/", Library: "/library" };
+  const Item = ({ label, icon: Icon }: { label: string; icon: typeof Home }) => {
+    const cls = cn(
         "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-[15px] transition-colors",
         active === label ? "bg-sidebar-accent font-semibold text-sidebar-accent-foreground" : "text-sidebar-foreground/90 hover:bg-sidebar-foreground/10",
-      )}
-    >
-      <Icon className="h-[18px] w-[18px] shrink-0" />
-      <span className="truncate">{label}</span>
-    </button>
-  );
+      );
+    const inner = (<><Icon className="h-[18px] w-[18px] shrink-0" /><span className="truncate">{label}</span></>);
+    const to = routes[label];
+    return to ? (
+      <Link to={to} onClick={() => { onSelect(label); onClose?.(); }} className={cls}>{inner}</Link>
+    ) : (
+      <button onClick={() => { onSelect(label); onClose?.(); }} className={cls}>{inner}</button>
+    );
+  };
   return (
     <aside className="flex h-full w-[256px] flex-col text-sidebar-foreground" style={{ background: "var(--gradient-sidebar)" }}>
       <div className="flex items-center justify-between px-6 pt-6">
@@ -82,8 +85,8 @@ function Sidebar({ user, active, onSelect, onClose }: { user: MockUser; active: 
   );
 }
 
-export function AppShell({ user, onRoleChange, children }: { user: MockUser; onRoleChange: (r: Role) => void; children: ReactNode }) {
-  const [active, setActive] = useState("Overview");
+export function AppShell({ user, onRoleChange, children, activeLabel = "Overview" }: { user: MockUser; onRoleChange: (r: Role) => void; children: ReactNode; activeLabel?: string }) {
+  const [active, setActive] = useState(activeLabel);
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   return (
