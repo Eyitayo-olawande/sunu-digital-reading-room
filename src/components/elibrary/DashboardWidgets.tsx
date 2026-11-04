@@ -134,7 +134,7 @@ const quick = [
 
 export function QuickAccess() {
   return (
-    <section className={cn(card, "h-full p-4")}>
+    <section className={cn(card, "h-full min-w-0 p-4")}>
       <h2 className="mb-3 text-lg font-bold">Quick Access</h2>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {quick.map(({ title, desc, icon: Icon }) => (
@@ -151,7 +151,7 @@ export function QuickAccess() {
 
 export function FeaturedResources() {
   return (
-    <section className={cn(card, "h-full p-4")}>
+    <section className={cn(card, "h-full min-w-0 p-4")}>
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-lg font-bold">Featured Resources</h2>
         <button className="inline-flex items-center gap-1 text-sm font-semibold text-primary">View library <ArrowRight className="h-4 w-4" /></button>
@@ -175,7 +175,7 @@ const noticeIcons = [Megaphone, Calendar, Info];
 
 export function RecentNotices() {
   return (
-    <section className={cn(card, "h-full p-4")}>
+    <section className={cn(card, "h-full min-w-0 p-4")}>
       <div className="mb-2 flex items-center justify-between">
         <h2 className="text-lg font-bold">Recent Notices</h2>
         <button className="inline-flex items-center gap-1 text-sm font-semibold text-primary">View all <ArrowRight className="h-4 w-4" /></button>
