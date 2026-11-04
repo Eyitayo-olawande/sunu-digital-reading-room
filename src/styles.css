@@ -165,7 +165,14 @@
 .learning-progress::-webkit-progress-value { background: var(--primary); border-radius: var(--radius); }
 .learning-progress::-moz-progress-bar { background: var(--primary); border-radius: var(--radius); }
 
-.my-learning-photo { mask-image: linear-gradient(to right, transparent, var(--foreground) 35%); }
+.my-learning-banner { min-height: 340px; }
+.my-learning-person { bottom: 0; right: 0; height: 160px; width: auto; max-width: 100%; object-fit: contain; object-position: bottom right; }
+.my-learning-banner-copy { max-width: 600px; }
+@media (min-width: 1024px) {
+  .my-learning-banner { height: 160px; min-height: 160px; margin-top: 28px; }
+  .my-learning-person { height: 200px; max-width: none; }
+  .my-learning-banner-copy { max-width: 60%; }
+}
 .my-learning-aside { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 640px) and (max-width: 1199px) {
   .my-learning-aside { grid-template-columns: repeat(2, minmax(0, 1fr)); }

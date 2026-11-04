@@ -3,7 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Layers, CheckCircle2, Clock3, CalendarDays, LockKeyhole, Target, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import hero from "@/assets/my-learning-office.jpg";
+import background from "@/assets/learning-office.png.asset.json";
+import professional from "@/assets/learning-professional.png.asset.json";
 import conduct from "@/assets/res-conduct.jpg";
 import claims from "@/assets/res-claims.jpg";
 import intake from "@/assets/res-intake.jpg";
@@ -36,10 +37,10 @@ export function MyLearningView() {
   const next = nextAssignment();
   const modules = assignmentsFor(tab);
   return <div className="mx-auto max-w-[1440px] space-y-4">
-    <section className="relative isolate overflow-hidden rounded-xl bg-card">
-      <div className="absolute inset-0 hidden lg:block"><img src={hero} alt="SUNU professional learning at her laptop" className="my-learning-photo absolute right-0 h-full w-auto max-w-none object-contain" /><div className="absolute inset-0 bg-gradient-to-r from-card from-25% via-card/80 via-45% to-transparent to-75%" /></div>
-      <div className="relative z-10 max-w-xl px-5 py-6 sm:px-7"><p className="text-xs font-semibold text-muted-foreground">MY LEARNING</p><h1 className="mt-1 text-3xl font-extrabold sm:text-4xl">My Learning <span className="text-primary">Journey</span></h1><p className="mt-2 max-w-lg text-base leading-relaxed">Build your knowledge and meet your role requirements.</p><div className="mt-3 h-1 w-14 rounded-full bg-primary" /></div>
-      <img src={hero} alt="SUNU professional at her laptop" className="block h-auto w-full lg:hidden" />
+    <section className="my-learning-banner relative isolate">
+      <div className="absolute inset-0 overflow-hidden rounded-xl bg-card"><img src={background.url} alt="" className="h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-card from-25% via-card/80 via-45% to-transparent to-75%" /></div>
+      <img src={professional.url} alt="SUNU professional learning at his laptop" className="my-learning-person absolute z-10" />
+      <div className="my-learning-banner-copy relative z-20 px-5 py-6 sm:px-7"><p className="text-xs font-semibold text-muted-foreground">MY LEARNING</p><h1 className="mt-1 text-3xl font-extrabold sm:text-4xl">My Learning <span className="text-primary">Journey</span></h1><p className="mt-2 max-w-lg text-base leading-relaxed">Build your knowledge and meet your role requirements.</p><div className="mt-3 h-1 w-14 rounded-full bg-primary" /></div>
     </section>
     <div className="grid items-start gap-4 min-[1200px]:grid-cols-[minmax(0,1fr)_320px]">
       <div className="min-w-0 space-y-4">
