@@ -28,7 +28,7 @@ function initials(name: string) {
 }
 
 function Sidebar({ user, active, onSelect, onClose }: { user: MockUser; active: string; onSelect: (l: string) => void; onClose?: () => void }) {
-  const routes: Record<string, "/" | "/library" | "/learning-paths"> = { Overview: "/", Library: "/library", "My Learning": "/learning-paths", "Learning Paths": "/learning-paths" };
+  const routes: Record<string, "/" | "/library" | "/learning-paths" | "/my-learning"> = { Overview: "/", Library: "/library", "My Learning": "/my-learning", "Learning Paths": "/learning-paths" };
   const Item = ({ label, icon: Icon }: { label: string; icon: typeof Home }) => {
     const cls = cn(
         "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-[15px] transition-colors",
