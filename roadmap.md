@@ -1,4 +1,6 @@
 # Stage 4
+- [x] Build the dedicated My Learning page with module-derived summary, tabs and viewer links.
+- [x] Verify My Learning layouts, filters and the Continue Learning flow.
 - [x] Build the Learning Paths screen and mock detail interactions.
 - [x] Add module-based progress rules and tests.
 - [x] Verify desktop, tablet and mobile layouts and module navigation.

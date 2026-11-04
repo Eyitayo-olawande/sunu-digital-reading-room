@@ -165,6 +165,12 @@
 .learning-progress::-webkit-progress-value { background: var(--primary); border-radius: var(--radius); }
 .learning-progress::-moz-progress-bar { background: var(--primary); border-radius: var(--radius); }
 
+.my-learning-photo { mask-image: linear-gradient(to right, transparent, var(--foreground) 35%); }
+.my-learning-aside { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) and (max-width: 1439px) {
+  .my-learning-aside { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 .learning-path-grid, .learning-summary { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 640px) {
   .learning-path-grid, .learning-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
