@@ -63,7 +63,7 @@ function PathCard({ path, onSelect }: { path: LearningPath; onSelect: () => void
 function LearningSummary() {
   const p = progressFor(assigned);
   const next = nextLearningModule(assigned);
-  return <aside className="grid content-start gap-4 sm:grid-cols-2 min-[1440px]:grid-cols-1">
+  return <aside className="learning-summary grid min-w-0 content-start gap-4">
     <section className={cn(card, "p-4")}>
       <div className="flex gap-3"><Layers className="h-7 w-7 shrink-0 text-primary" /><div><h2 className="text-lg font-bold">My Learning Path</h2><p className="text-sm">{assigned.title}</p></div></div>
       <div className="my-4 flex items-center justify-between gap-4">
@@ -73,7 +73,7 @@ function LearningSummary() {
       <ModuleLink path={assigned} className="w-full">Continue Learning</ModuleLink>
     </section>
     <section className="flex items-start gap-3 rounded-xl border border-primary/10 bg-primary-soft p-4"><CalendarDays className="h-7 w-7 shrink-0 text-primary" /><div className="min-w-0"><h2 className="text-lg font-bold">Next Milestone</h2><p className="mt-1 text-sm font-medium">{next?.title}</p><p className="mt-1 text-sm leading-relaxed">Complete the remaining module by <strong>{next?.due}</strong> to finish your role learning.</p><ModuleLink path={assigned} className="mt-3" outline>Open Module</ModuleLink></div></section>
-    <section className={cn(card, "p-4 sm:col-span-2 min-[1440px]:col-span-1")}><div className="flex items-center gap-3"><Award className="h-7 w-7 text-primary" /><h2 className="text-lg font-bold">My Certificates</h2></div><div className="mt-4 flex items-start gap-3 border-t border-border pt-4"><LockKeyhole className="h-5 w-5 shrink-0 text-muted-foreground" /><div><p className="text-sm font-semibold">Coming soon</p><p className="mt-1 text-sm text-muted-foreground">Certificates are not available yet.</p></div></div></section>
+    <section className={cn(card, "learning-certificates p-4")}><div className="flex items-center gap-3"><Award className="h-7 w-7 text-primary" /><h2 className="text-lg font-bold">My Certificates</h2></div><div className="mt-4 flex items-start gap-3 border-t border-border pt-4"><LockKeyhole className="h-5 w-5 shrink-0 text-muted-foreground" /><div><p className="text-sm font-semibold">Coming soon</p><p className="mt-1 text-sm text-muted-foreground">Certificates are not available yet.</p></div></div></section>
   </aside>;
 }
 
@@ -95,7 +95,7 @@ export function LearningPathsView() {
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter learning paths">{tabs.map(t => <Button key={t} aria-pressed={tab === t} variant={tab === t ? "default" : "outline"} onClick={() => setTab(t)} className="min-h-10 px-3 text-xs">{t} ({selectLearningPaths(t, "Most Relevant").length})</Button>)}</div>
           <label className="flex items-center gap-2 text-xs font-medium">Sort:<select aria-label="Sort learning paths" value={sort} onChange={e => setSort(e.target.value as LearningSort)} className="min-h-10 max-w-full rounded-lg border border-border bg-card px-2">{(["Most Relevant", "Title A–Z", "Progress"] as const).map(s => <option key={s}>{s}</option>)}</select></label>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1100px]:grid-cols-3" aria-label="Learning paths">{paths.map(path => <PathCard key={path.id} path={path} onSelect={() => setSelected(path)} />)}</div>
+        <div className="learning-path-grid grid gap-4" aria-label="Learning paths">{paths.map(path => <PathCard key={path.id} path={path} onSelect={() => setSelected(path)} />)}</div>
       </div>
       <LearningSummary />
     </div>

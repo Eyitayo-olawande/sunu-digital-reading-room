@@ -11,7 +11,7 @@ export type LearningSort = "Most Relevant" | "Title A–Z" | "Progress";
 export interface LearningModule { title: string; resourceId: string; status: ModuleStatus; stage: "Common" | "Department" | "Role"; due?: string }
 export interface LearningPath { id: string; title: string; category: string; duration: string; image: string; recommended: boolean; modules: LearningModule[] }
 const module = (title: string, resourceId: string, status: ModuleStatus, stage: LearningModule["stage"]): LearningModule => ({ title, resourceId, status, stage });
-export const learningPaths: LearningPath[] = [
+export const learningPaths: [LearningPath, ...LearningPath[]] = [
   { id: "claims-officer", title: "Claims Officer Path", category: "Core", duration: "2 hours", image: intake, recommended: true, modules: [
     module("Code of Conduct & Ethics", "code-of-conduct", "Completed", "Common"),
     module("Claims Operations Essentials", "motor-policy", "Completed", "Department"),
