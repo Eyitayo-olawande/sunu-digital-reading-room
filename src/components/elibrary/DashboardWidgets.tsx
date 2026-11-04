@@ -14,6 +14,7 @@ export function WelcomeBanner({ name, subtitle = "Your learning, library and kno
         className="absolute inset-0 overflow-hidden rounded-xl bg-card bg-cover bg-[position:60%_center] md:bg-center"
         style={{ backgroundImage: `url(${bannerAsset.url})` }}
       />
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-card/90 via-card/75 to-card/20 md:hidden" />
       <img
         src={cutoutAsset.url}
         alt="Two SUNU colleagues collaborating at a laptop"
