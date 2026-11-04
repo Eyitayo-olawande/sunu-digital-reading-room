@@ -6,6 +6,8 @@ describe("Administrator record boundaries", () => {
     expect(adminSummary().resources).toBe(15);
     expect(adminSummary().publishedResources).toBe(13);
     expect(adminSummary().learningPaths).toBe(6);
+    expect(adminSummary().draftResources).toBe(1);
+    expect(adminSummary().reviewResources).toBe(1);
   });
   it("does not turn single-employee modules into organisation totals", () => {
     expect(adminSummary().activeUsers).toBeNull();
@@ -23,5 +25,9 @@ describe("Administrator record boundaries", () => {
   it("keeps the admin screen out of employee preview", () => {
     expect(canPreviewAdmin("employee")).toBe(false);
     expect(canPreviewAdmin("admin")).toBe(true);
+  });
+  it("keeps sample notices separate from live system notices", () => {
+    expect(adminSummary().sampleNotices).toHaveLength(3);
+    expect(adminSummary().notices).toEqual([]);
   });
 });
