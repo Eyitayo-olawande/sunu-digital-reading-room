@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { AppShell } from "@/components/elibrary/AppShell";
 import { mockUsers, type Role } from "@/components/elibrary/mock-data";
-import { AdminStats } from "@/components/elibrary/AdminStats";
+import { AdminDashboardView } from "@/components/elibrary/AdminDashboardView";
+import { canPreviewAdmin } from "@/components/elibrary/admin-data";
 import {
   FeaturedResources, LearningJourney, LearningProgressCard,
   NextModuleCard, QuickAccess, RecentNotices, WelcomeBanner,
@@ -27,15 +28,8 @@ function Index() {
   const user = mockUsers[role];
   return (
     <AppShell user={user} onRoleChange={setRole}>
-      <div className="mx-auto max-w-[1440px] space-y-4">
-        {role === "admin" ? (
-          <div>
-            <WelcomeBanner name={user.firstName} withStats />
-            <AdminStats />
-          </div>
-        ) : (
-          <WelcomeBanner name={user.firstName} />
-        )}
+      {canPreviewAdmin(role) ? <AdminDashboardView /> : <div className="mx-auto max-w-[1440px] space-y-4">
+        <WelcomeBanner name={user.firstName} />
         <div className="grid gap-4 xl:grid-cols-2">
           <LearningProgressCard />
           <LearningJourney />
@@ -48,7 +42,7 @@ function Index() {
           <FeaturedResources />
           <RecentNotices />
         </div>
-      </div>
+      </div>}
     </AppShell>
   );
 }

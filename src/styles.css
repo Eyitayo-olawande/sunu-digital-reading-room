@@ -165,6 +165,33 @@
 .learning-progress::-webkit-progress-value { background: var(--primary); border-radius: var(--radius); }
 .learning-progress::-moz-progress-bar { background: var(--primary); border-radius: var(--radius); }
 
+.admin-banner { min-height: 350px; }
+.admin-banner-person { right: 0; bottom: 0; height: 180px; max-width: 100%; object-fit: contain; object-position: bottom right; }
+.admin-banner-fade { background: linear-gradient(90deg, var(--card) 20%, transparent 80%); }
+.admin-department-row { grid-template-columns: minmax(0, 1fr) minmax(40px, 1.3fr) 14px; }
+.admin-journey { display: grid; gap: 16px; }
+.admin-journey-stage { position: relative; display: grid; grid-template-columns: 36px minmax(0, 1fr); align-items: center; gap: 12px; }
+.admin-journey-stage:not(:last-child)::after { content: ""; position: absolute; width: 3px; top: 26px; bottom: -26px; left: 17px; background: var(--border); }
+.admin-journey-node { position: relative; z-index: 1; display: grid; width: 36px; height: 36px; place-items: center; border-radius: 50%; color: var(--muted-foreground); background: var(--muted); border: 2px solid var(--border); }
+@container (min-width: 480px) {
+  .admin-journey { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+  .admin-journey-stage { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+  .admin-journey-stage:not(:last-child)::after { left: 50%; right: -50%; top: 17px; bottom: auto; width: auto; height: 3px; }
+}
+@media (min-width: 768px) {
+  .admin-banner { min-height: 180px; height: 180px; margin-top: 30px; }
+  .admin-banner-copy { max-width: 55%; }
+  .admin-banner-copy h1 { font-size: 28px; }
+  .admin-banner-person { height: 215px; max-width: 49%; }
+}
+@media (min-width: 1024px) {
+  .admin-panels { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+}
+@media (min-width: 1440px) {
+  .admin-banner-copy h1 { font-size: 32px; }
+  .admin-banner-person { height: 225px; right: 12px; }
+}
+
 .my-learning-banner { min-height: 340px; }
 .my-learning-person { bottom: 0; right: 0; height: 160px; width: auto; max-width: 100%; object-fit: contain; object-position: bottom right; }
 .my-learning-banner-copy { max-width: 600px; }
