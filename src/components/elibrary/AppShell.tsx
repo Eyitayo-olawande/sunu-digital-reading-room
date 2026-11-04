@@ -40,7 +40,7 @@ function Sidebar({ user, active, onSelect, onClose }: { user: MockUser; active: 
     </button>
   );
   return (
-    <aside className="flex h-full w-[264px] flex-col text-sidebar-foreground" style={{ background: "var(--gradient-sidebar)" }}>
+    <aside className="flex h-full w-[256px] flex-col text-sidebar-foreground" style={{ background: "var(--gradient-sidebar)" }}>
       <div className="flex items-center justify-between px-6 pt-6">
         <div className="flex items-center gap-3">
           <BookOpen className="h-9 w-9 shrink-0" strokeWidth={1.5} />
@@ -97,7 +97,7 @@ export function AppShell({ user, onRoleChange, children }: { user: MockUser; onR
         </div>
       )}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-background/90 px-4 py-3 backdrop-blur sm:px-8">
+        <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-background/90 h-16 px-4 backdrop-blur sm:px-7">
           <button className="lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu"><Menu className="h-6 w-6" /></button>
           <label className="flex min-w-0 max-w-xl flex-1 items-center gap-3 rounded-lg border border-border bg-card px-4 py-2.5">
             <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
@@ -124,7 +124,7 @@ export function AppShell({ user, onRoleChange, children }: { user: MockUser; onR
             </div>
           </div>
         </header>
-        <main className="flex-1 px-4 py-6 sm:px-8">{children}</main>
+        <main className="flex-1 px-4 py-4 sm:px-7">{children}</main>
       </div>
     </div>
   );
