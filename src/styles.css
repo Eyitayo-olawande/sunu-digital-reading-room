@@ -152,3 +152,14 @@
     color: var(--color-foreground);
   }
 }
+
+.learning-progress {
+  appearance: none;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--border);
+}
+.learning-progress::-webkit-progress-bar { background: var(--border); }
+.learning-progress::-webkit-progress-value { background: var(--primary); border-radius: var(--radius); }
+.learning-progress::-moz-progress-bar { background: var(--primary); border-radius: var(--radius); }
