@@ -77,7 +77,7 @@ export function LearningJourney() {
       </div>
       <ol className="mt-4 grid grid-cols-4">
         {journey.map((s, i) => {
-          const prevDone = i > 0 && journey[i - 1].state === "completed";
+          const prevDone = i > 0 && journey[i - 1]?.state === "completed";
           return (
             <li key={s.label} className={cn("relative flex flex-col items-center rounded-lg px-1 pb-2 text-center", s.state === "current" && "bg-primary-soft")}>
               {i > 0 && (
@@ -185,7 +185,7 @@ export function RecentNotices() {
       ) : (
         <ul className="divide-y divide-border">
           {notices.map((n, i) => {
-            const Icon = noticeIcons[i % noticeIcons.length];
+            const Icon = noticeIcons[i % noticeIcons.length] ?? Info;
             return (
               <li key={n.title} className="flex items-center gap-3 py-2.5">
                 <Icon className="h-4 w-4 shrink-0 text-primary" />
