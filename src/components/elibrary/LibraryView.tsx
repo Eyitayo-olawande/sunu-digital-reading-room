@@ -4,7 +4,7 @@ import {
   LayoutGrid, List, Bookmark, Eye, X, Download, Pencil, SlidersHorizontal, SearchX,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import heroImg from "@/assets/library-hero.jpg";
+import heroAsset from "@/assets/library_banner.png.asset.json";
 import {
   departments, docTypes, filterResources, libraryResources, statuses, topics,
   type DocStatus, type DocType, type LibraryFilters, type LibraryResource,
@@ -41,18 +41,18 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
     <div className="mx-auto max-w-[1440px] space-y-5">
       {/* Header banner */}
       <section className="relative overflow-hidden rounded-xl bg-card">
-        <img src={heroImg} alt="SUNU colleague reviewing a document on her laptop" width={1600} height={560}
-          className="absolute inset-0 h-full w-full object-cover object-[75%_20%]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/90 to-card/40 md:via-card/60 md:to-card/0" />
-        <div className="relative max-w-xl px-6 py-7 sm:px-10 md:py-10">
+        <img src={heroAsset.url} alt="SUNU colleague reviewing a document on her laptop" width={2172} height={724}
+          className="absolute inset-0 h-full w-full object-cover object-[100%_22%]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-card from-20% via-card/80 via-45% to-transparent to-75% md:from-card/95 md:from-10% md:via-card/50 md:via-35% md:to-60%" />
+        <div className="relative max-w-xl px-6 py-6 sm:px-10 md:py-8">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Knowledge Library</h1>
           <p className="mt-2 text-base text-foreground/80 sm:text-lg">Find policies, procedures, guidelines and learning materials to support your work.</p>
           <div className="mt-4 h-1 w-14 rounded-full bg-primary" />
         </div>
       </section>
 
-      <div className="grid gap-5 min-[1200px]:grid-cols-[minmax(0,1fr)_240px]">
-        <div className="min-w-0 space-y-5">
+      <div className="grid gap-5 min-[1200px]:grid-cols-[minmax(0,1fr)_250px]">
+        <div className="@container min-w-0 space-y-4">
           {/* Search */}
           <form className="flex gap-2 sm:gap-3" onSubmit={(e) => { e.preventDefault(); setF((p) => ({ ...p, query: draft })); }}>
             <label className="flex min-w-0 flex-1 items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-[var(--shadow-card)]">
@@ -71,7 +71,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
 
           {/* Topics */}
           <section>
-            <div className="mb-3 flex items-center justify-between gap-3">
+            <div className="mb-2.5 flex items-center justify-between gap-3">
               <h2 className="text-lg font-bold">Browse by topic</h2>
               {f.topic && <button onClick={() => setF((p) => ({ ...p, topic: "" }))} className="inline-flex items-center gap-1 text-sm font-semibold text-primary">View all topics <ArrowRight className="h-4 w-4" /></button>}
             </div>
@@ -81,11 +81,11 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
                 const on = f.topic === t.name;
                 return (
                   <button key={t.name} aria-pressed={on} onClick={() => setF((p) => ({ ...p, topic: on ? "" : t.name }))}
-                    className={cn("flex min-h-[104px] flex-col items-center justify-center gap-1.5 rounded-xl border px-2 py-3 text-center transition-colors",
+                    className={cn("flex min-h-[96px] flex-col items-center justify-center gap-1 rounded-xl border px-2 py-2.5 text-center transition-colors",
                       on ? "border-primary/30 bg-primary-soft" : "border-border bg-card hover:bg-muted")}>
-                    <Icon className="h-7 w-7 text-primary" strokeWidth={1.6} />
+                    <Icon className="h-6 w-6 text-primary" strokeWidth={1.7} />
                     <span className="text-sm font-semibold leading-tight">{t.name}</span>
-                    <span className="text-sm text-muted-foreground">({t.count})</span>
+                    <span className="text-sm text-muted-foreground">({visibleAll.filter((r) => r.topic === t.name).length})</span>
                   </button>
                 );
               })}
@@ -93,7 +93,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
           </section>
 
           {/* Type chips + view toggle */}
-          <div className="flex flex-wrap items-center gap-2 border-t border-border pt-4">
+          <div className="flex flex-wrap items-center gap-2 border-t border-border pt-3">
             <Chip on={!f.types.length} onClick={() => setF((p) => ({ ...p, types: [] }))}>All Resources ({base.length})</Chip>
             {docTypes.map((t) => (
               <Chip key={t} on={f.types.length === 1 && f.types[0] === t} onClick={() => setF((p) => ({ ...p, types: [t] }))}>
@@ -119,7 +119,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
               <button onClick={clear} className="mt-4 rounded-lg bg-primary px-5 py-2 font-semibold text-primary-foreground">Clear all filters</button>
             </div>
           ) : view === "grid" ? (
-            <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3 min-[1400px]:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3.5 @md:grid-cols-2 @3xl:grid-cols-3 @4xl:grid-cols-4">
               {results.map((r) => <ResourceCard key={r.id} r={r} saved={saved.includes(r.id)} onSave={() => setSaved((s) => s.includes(r.id) ? s.filter((x) => x !== r.id) : [...s, r.id])} onOpen={() => setOpen(r)} canManage={canManage} />)}
             </div>
           ) : (
@@ -139,7 +139,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
           )}
         </div>
 
-        <aside className={cn(card, "hidden self-start p-5 min-[1200px]:block")}>{filterPanel}</aside>
+        <aside className={cn(card, "hidden self-start px-5 py-4 min-[1200px]:block")}>{filterPanel}</aside>
       </div>
 
       {drawer && (
@@ -178,7 +178,7 @@ function StatusBadge({ s }: { s: DocStatus }) {
 function ResourceCard({ r, saved, onSave, onOpen, canManage }: { r: LibraryResource; saved: boolean; onSave: () => void; onOpen: () => void; canManage: boolean }) {
   return (
     <article className={cn(card, "flex flex-col overflow-hidden")}>
-      <div className="relative h-32 shrink-0 sm:h-[120px]">
+      <div className="relative h-32 shrink-0 @md:h-[104px]">
         <img src={r.image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
         <button onClick={onSave} aria-label={saved ? "Remove from saved" : "Save resource"} aria-pressed={saved}
           className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-md bg-card/95">
@@ -186,9 +186,9 @@ function ResourceCard({ r, saved, onSave, onOpen, canManage }: { r: LibraryResou
         </button>
         <div className="absolute bottom-0 left-3 flex translate-y-1/2 gap-1.5"><TypeBadge r={r} />{canManage && r.status !== "Published" && <StatusBadge s={r.status} />}</div>
       </div>
-      <div className="flex flex-1 items-end gap-2 px-4 pb-3 pt-4">
+      <div className="flex flex-1 items-end gap-2 px-3 pb-2.5 pt-4">
         <div className="min-w-0 flex-1">
-          <h3 className="font-semibold leading-snug">{r.title}</h3>
+          <h3 className="text-[15px] font-semibold leading-snug">{r.title}</h3>
           <p className="mt-1 text-xs text-muted-foreground">{r.department} • {r.size} • {r.format}</p>
         </div>
         <button onClick={onOpen} aria-label={`Open ${r.title}`} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border hover:bg-muted"><Eye className="h-4 w-4" /></button>
