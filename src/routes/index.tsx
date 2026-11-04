@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { AppShell } from "@/components/elibrary/AppShell";
 import { mockUsers, type Role } from "@/components/elibrary/mock-data";
+import { AdminStats } from "@/components/elibrary/AdminStats";
 import {
   CertificateTeaser, FeaturedResources, LearningJourney, LearningProgressCard,
   NextModuleCard, QuickAccess, RecentNotices, WelcomeBanner,
@@ -27,7 +28,14 @@ function Index() {
   return (
     <AppShell user={user} onRoleChange={setRole}>
       <div className="mx-auto max-w-[1400px] space-y-6">
-        <WelcomeBanner name={user.firstName} />
+        {role === "admin" ? (
+          <div>
+            <WelcomeBanner name={user.firstName} withStats subtitle="Your learning, library and knowledge hub at SUNU Assurances Nigeria." />
+            <AdminStats />
+          </div>
+        ) : (
+          <WelcomeBanner name={user.firstName} />
+        )}
         <div className="grid gap-6 xl:grid-cols-2">
           <LearningProgressCard />
           <NextModuleCard />
