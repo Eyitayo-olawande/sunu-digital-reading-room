@@ -1,6 +1,6 @@
 # Stage 4
-- [ ] Refine connected journey, module progress display and responsive course rows.
-- [ ] Verify progress accuracy, actions and responsive layouts.
+- [x] Refine connected journey, module progress display and responsive course rows.
+- [x] Verify progress accuracy, actions and responsive layouts.
 - [x] Match My Learning head overlap using the supplied cut-out and office background.
 - [x] Correct My Learning to the supplied visual master and verify desktop/mobile.
 - [x] Build the dedicated My Learning page with module-derived summary, tabs and viewer links.
