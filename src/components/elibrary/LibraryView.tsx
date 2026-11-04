@@ -119,7 +119,7 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
               <button onClick={clear} className="mt-4 rounded-lg bg-primary px-5 py-2 font-semibold text-primary-foreground">Clear all filters</button>
             </div>
           ) : view === "grid" ? (
-            <div className="grid grid-cols-1 gap-3.5 @md:grid-cols-2 @2xl:grid-cols-3 @4xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3.5 @md:grid-cols-2 @3xl:grid-cols-3 @4xl:grid-cols-4">
               {results.map((r) => <ResourceCard key={r.id} r={r} saved={saved.includes(r.id)} onSave={() => setSaved((s) => s.includes(r.id) ? s.filter((x) => x !== r.id) : [...s, r.id])} onOpen={() => setOpen(r)} canManage={canManage} />)}
             </div>
           ) : (
