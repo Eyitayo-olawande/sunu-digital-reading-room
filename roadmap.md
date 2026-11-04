@@ -1,5 +1,5 @@
 # Stage 4
-- [ ] Match My Learning head overlap using the supplied cut-out and office background.
+- [x] Match My Learning head overlap using the supplied cut-out and office background.
 - [x] Correct My Learning to the supplied visual master and verify desktop/mobile.
 - [x] Build the dedicated My Learning page with module-derived summary, tabs and viewer links.
 - [x] Verify My Learning layouts, filters and the Continue Learning flow.
