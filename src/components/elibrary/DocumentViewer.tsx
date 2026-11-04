@@ -29,7 +29,14 @@ export function DocumentViewer({ doc, canManage }: { doc: ViewerDoc; canManage: 
   const viewerRef = useRef<HTMLDivElement>(null);
   const total = doc.pages.length;
 
-  useEffect(() => { const t = setTimeout(() => setLoading(false), 450); return () => clearTimeout(t); }, []);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setLoading(false);
+      const w = stageRef.current?.clientWidth ?? BASE_W;
+      if (w < BASE_W + 48) setZoom(Math.max(40, Math.floor(((w - 32) / BASE_W) * 100)));
+    }, 450);
+    return () => clearTimeout(t);
+  }, []);
 
   const go = (n: number) => setPage(Math.min(total, Math.max(1, n)));
   const stepZoom = (d: 1 | -1) => setZoom((z) => {
@@ -78,7 +85,7 @@ export function DocumentViewer({ doc, canManage }: { doc: ViewerDoc; canManage: 
       <section className="rounded-xl border border-border bg-card p-5">
         <h2 className="flex items-center gap-2.5 text-lg font-bold"><Info className="h-5 w-5 text-primary" /> Document Details</h2>
         <dl className="mt-3 divide-y divide-border text-sm">
-          {([["Content type", r.type], ["Format", r.format], ["Department", r.department], ["Version", doc.version], ["Last updated", r.updated], ["Status", <StatusPill key="s" status={r.status} />]] as const).map(([k, v]) => (
+          {([["Content type", r.type === "Template" && r.badge ? r.badge : r.type], ["Format", r.format], ["Department", r.department], ["Version", doc.version], ["Last updated", r.updated], ["Status", <StatusPill key="s" status={r.status} />]] as const).map(([k, v]) => (
             <div key={k} className="grid grid-cols-[120px_minmax(0,1fr)] items-center gap-2 py-2.5"><dt className="text-muted-foreground">{k}</dt><dd className="font-medium">{v}</dd></div>
           ))}
           {canManage && <div className="grid grid-cols-[120px_minmax(0,1fr)] gap-2 py-2.5"><dt className="text-muted-foreground">Owner</dt><dd className="font-medium">{r.owner}</dd></div>}
@@ -117,7 +124,7 @@ export function DocumentViewer({ doc, canManage }: { doc: ViewerDoc; canManage: 
         </div>
         <div className="col-span-2 flex flex-wrap items-center gap-2 lg:col-span-1 lg:shrink-0">
           <button onClick={() => setFav((f) => !f)} aria-pressed={fav} className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-4 text-sm font-medium hover:bg-muted">
-            {fav ? <BookmarkCheck className="h-4 w-4 text-primary" /> : <Bookmark className="h-4 w-4 text-primary" />}{fav ? "Saved to favourites" : "Add to favourites"}
+            {fav ? <BookmarkCheck className="h-4 w-4 text-primary" /> : <Bookmark className="h-4 w-4 text-primary" />}<span className="hidden sm:inline">{fav ? "Saved to favourites" : "Add to favourites"}</span><span className="sm:hidden">{fav ? "Saved" : "Save"}</span>
           </button>
           {doc.requiresAcknowledgement && (ack === "done"
             ? <span className="inline-flex h-11 items-center gap-2 rounded-lg bg-success/10 px-4 text-sm font-semibold text-success"><Check className="h-4 w-4" /> Read &amp; acknowledged</span>
@@ -205,7 +212,7 @@ export function DocumentViewer({ doc, canManage }: { doc: ViewerDoc; canManage: 
                 <PageContent page={doc.pages[page - 1]} first={page === 1} title={r.title} subtitle={doc.subtitle} />
               </div>
             ) : (
-              <div className="flex justify-center">
+              <div className="mx-auto w-fit">
                 <div className="shrink-0 bg-card shadow-md transition-transform" style={{ width: BASE_W * zoom / 100, minHeight: BASE_W * 1.3 * zoom / 100, transform: rotation ? `rotate(${rotation}deg)` : undefined }}>
                   <div style={{ fontSize: `${zoom / 100}rem` }} className="p-[2.5em]">
                     <PageContent page={doc.pages[page - 1]} first={page === 1} title={r.title} subtitle={doc.subtitle} />
