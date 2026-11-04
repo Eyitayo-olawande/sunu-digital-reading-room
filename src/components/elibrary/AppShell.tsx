@@ -85,6 +85,7 @@ function Sidebar({ user, active, onSelect, onClose }: { user: MockUser; active: 
 export function AppShell({ user, onRoleChange, children }: { user: MockUser; onRoleChange: (r: Role) => void; children: ReactNode }) {
   const [active, setActive] = useState("Overview");
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   return (
     <div className="flex min-h-screen w-full bg-background font-sans text-foreground">
       <div className="sticky top-0 hidden h-screen shrink-0 xl:block">
@@ -99,11 +100,21 @@ export function AppShell({ user, onRoleChange, children }: { user: MockUser; onR
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-background/90 h-16 px-4 backdrop-blur sm:px-7">
           <button className="grid h-10 w-10 shrink-0 place-items-center xl:hidden" onClick={() => setOpen(true)} aria-label="Open menu"><Menu className="h-6 w-6" /></button>
-          <label className="flex min-w-0 max-w-xl flex-1 items-center gap-3 rounded-lg border border-border bg-card px-3 sm:px-4 py-2.5">
+          <button className="grid h-11 w-11 shrink-0 place-items-center rounded-lg min-[600px]:hidden" onClick={() => setSearchOpen(true)} aria-label="Open search"><Search className="h-5 w-5" /></button>
+          {searchOpen && (
+            <div className="absolute inset-0 z-10 flex items-center gap-2 bg-background px-4 min-[600px]:hidden">
+              <label className="flex min-w-0 flex-1 items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
+                <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+                <input autoFocus aria-label="Search" onKeyDown={(e) => e.key === "Escape" && setSearchOpen(false)} className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground" placeholder="Search the library…" />
+              </label>
+              <button className="grid h-11 w-11 shrink-0 place-items-center" onClick={() => setSearchOpen(false)} aria-label="Close search"><X className="h-5 w-5" /></button>
+            </div>
+          )}
+          <label className="hidden min-w-0 max-w-xl min-[600px]:flex flex-1 items-center gap-3 rounded-lg border border-border bg-card px-3 sm:px-4 py-2.5">
             <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
             <input className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground" placeholder="Search the library, policies, procedures and more…" />
           </label>
-          <div className="ml-auto flex shrink-0 items-center gap-3 sm:gap-5">
+          <div className="ml-auto flex shrink-0 items-center gap-1 sm:gap-5">
             <select
               value={user.role}
               onChange={(e) => onRoleChange(e.target.value as Role)}
@@ -113,9 +124,9 @@ export function AppShell({ user, onRoleChange, children }: { user: MockUser; onR
               <option value="employee">View as Employee</option>
               <option value="admin">View as Administrator</option>
             </select>
-            <button className="relative" aria-label="Notifications">
+            <button className="relative grid h-11 w-11 place-items-center sm:h-auto sm:w-auto" aria-label="Notifications">
               <Bell className="h-5 w-5" />
-              <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-primary" />
+              <span className="absolute right-2.5 top-2.5 h-2.5 sm:-right-0.5 sm:-top-0.5 w-2.5 rounded-full bg-primary" />
             </button>
             <HelpCircle className="hidden h-5 w-5 sm:block" />
             <div className="flex items-center gap-1">
