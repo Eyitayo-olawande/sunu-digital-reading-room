@@ -43,13 +43,15 @@ export function LibraryView({ canManage }: { canManage: boolean }) {
       <section className="relative overflow-hidden rounded-xl bg-card">
         <img src={heroAsset.url} alt="SUNU colleague reviewing a document on her laptop" width={2172} height={724}
           style={{ WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 28%)", maskImage: "linear-gradient(to right, transparent 0%, #000 28%)" }}
-          className="absolute inset-y-0 right-0 h-full w-auto max-w-none object-contain" />
-        <div className="absolute inset-0 bg-gradient-to-r from-card from-35% via-card/70 via-55% to-transparent to-80% md:from-card md:from-20% md:via-card/0 md:via-40% md:to-transparent" />
+          className="absolute inset-y-0 right-0 hidden h-full w-auto max-w-none object-contain lg:block" />
+        <div className="absolute inset-0 hidden bg-gradient-to-r from-card from-20% via-card/0 via-40% to-transparent lg:block" />
         <div className="relative max-w-xl px-6 py-6 sm:px-10 md:py-8">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Knowledge Library</h1>
           <p className="mt-2 text-base text-foreground/80 sm:text-lg">Find policies, procedures, guidelines and learning materials to support your work.</p>
           <div className="mt-4 h-1 w-14 rounded-full bg-primary" />
         </div>
+        <img src={heroAsset.url} alt="" aria-hidden width={2172} height={724}
+          className="relative block h-44 w-full object-cover object-[55%_20%] sm:h-56 lg:hidden" />
       </section>
 
       <div className="grid gap-5 min-[1200px]:grid-cols-[minmax(0,1fr)_250px]">
