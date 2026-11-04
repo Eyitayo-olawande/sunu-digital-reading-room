@@ -1,22 +1,26 @@
-import { ArrowRight, BookOpen, Bell, Calendar, Check, GraduationCap, Library, Lock, Play, Award } from "lucide-react";
+import { ArrowRight, BookOpen, Bell, Calendar, Check, GraduationCap, Library, Lock, Play, Bookmark, Layers, Megaphone, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
-import banner from "@/assets/welcome-banner.jpg";
+import bannerAsset from "@/assets/colleagues_banner.jpg.asset.json";
 import moduleImg from "@/assets/module-claim.jpg";
 import { journey, learning, nextModule, notices, resources } from "./mock-data";
 
 const card = "rounded-xl border border-border bg-card shadow-[var(--shadow-card)]";
 
-export function WelcomeBanner({ name, image = banner, subtitle = "Continue your learning, access key resources and stay updated.", withStats = false }: { name: string; image?: string; subtitle?: string; withStats?: boolean }) {
+export function WelcomeBanner({ name, subtitle = "Your learning, library and knowledge hub at SUNU Assurances Nigeria.", withStats = false }: { name: string; subtitle?: string; withStats?: boolean }) {
   return (
-    <section className={cn(card, "relative overflow-hidden")}>
-      <img src={image} alt="Two SUNU colleagues collaborating at a laptop" width={1920} height={640} className="absolute inset-0 h-full w-full object-cover object-[75%_center]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-card via-card/85 to-transparent md:via-card/60" />
-      <div className={cn("relative max-w-lg px-6 py-10 sm:px-12 sm:py-14", withStats && "pb-20 sm:pb-24")}>
-        <h1 className="text-3xl font-extrabold tracking-tight sm:text-[42px] sm:leading-tight">
+    <section className={cn("relative overflow-hidden rounded-xl bg-card", withStats ? "h-[260px]" : "h-[200px]")}>
+      <img
+        src={bannerAsset.url}
+        alt="Two SUNU colleagues collaborating at a laptop"
+        className="absolute inset-y-0 right-0 h-full w-full object-cover object-[center_20%] md:w-[62%]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-card via-card/90 to-card/20 md:via-card md:via-[38%] md:to-transparent md:to-[60%]" />
+      <div className="relative flex h-full max-w-xl flex-col justify-center px-6 sm:px-10">
+        <h1 className="whitespace-nowrap text-2xl font-extrabold tracking-tight sm:text-[34px] sm:leading-tight">
           Welcome back, <span className="text-primary">{name}</span>
         </h1>
-        <p className="mt-3 text-base text-foreground/80 sm:text-lg">{subtitle}</p>
-        <div className="mt-5 h-1 w-12 rounded-full bg-primary" />
+        <p className="mt-2 max-w-md text-base text-foreground/80 sm:text-lg">{subtitle}</p>
+        <div className="mt-4 h-1 w-12 rounded-full bg-primary" />
       </div>
     </section>
   );
@@ -24,22 +28,22 @@ export function WelcomeBanner({ name, image = banner, subtitle = "Continue your 
 
 export function LearningProgressCard() {
   return (
-    <section className="relative overflow-hidden rounded-xl p-6 text-primary-foreground shadow-[var(--shadow-card)] sm:p-7" style={{ background: "var(--gradient-learning)" }}>
+    <section className="relative h-full overflow-hidden rounded-xl p-5 text-primary-foreground shadow-[var(--shadow-card)] sm:px-7 sm:py-5" style={{ background: "var(--gradient-learning)" }}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-2xl font-bold">My Learning</h2>
-          <p className="mt-1 text-lg text-primary-foreground/90">{learning.path}</p>
+          <p className="text-lg text-primary-foreground/90">{learning.path}</p>
         </div>
         <StatusPill>In progress</StatusPill>
       </div>
-      <div className="mt-5 flex flex-wrap items-end justify-between gap-2">
+      <div className="mt-3 flex flex-wrap items-end justify-between gap-2">
         <p><span className="text-4xl font-bold">{learning.percent}%</span><span className="ml-3 text-lg">completion</span></p>
         <p className="text-sm">{learning.completed} of {learning.total} modules completed</p>
       </div>
-      <div className="mt-3 h-2.5 rounded-full bg-primary-foreground/25" role="progressbar" aria-valuenow={learning.percent}>
+      <div className="mt-2 h-2.5 rounded-full bg-primary-foreground/25" role="progressbar" aria-valuenow={learning.percent}>
         <div className="h-full rounded-full bg-primary-foreground" style={{ width: `${learning.percent}%` }} />
       </div>
-      <button className="mt-6 inline-flex items-center gap-2 rounded-md bg-card px-5 py-2.5 font-semibold text-primary hover:bg-primary-soft">
+      <button className="mt-4 inline-flex items-center gap-2 rounded-md bg-card px-5 py-2 font-semibold text-primary hover:bg-primary-soft">
         Continue learning <ArrowRight className="h-4 w-4" />
       </button>
     </section>
@@ -54,30 +58,45 @@ export function StatusPill({ children }: { children: React.ReactNode }) {
   );
 }
 
+const stageDesc: Record<string, string> = {
+  Common: "Organisation-wide learning",
+  Department: "Claims-related learning",
+  Role: "Claims Officer learning",
+  Certificate: "Final validation (coming soon)",
+};
+
 export function LearningJourney() {
   return (
-    <section className={cn(card, "p-6")}>
-      <h2 className="text-lg font-bold">Your learning journey</h2>
-      <ol className="mt-6 grid grid-cols-4">
-        {journey.map((s, i) => (
-          <li key={s.label} className="relative flex flex-col items-center text-center">
-            {i > 0 && (
-              <span className={cn("absolute right-1/2 top-5 h-0.5 w-full -translate-y-1/2", s.state === "upcoming" ? "border-t-2 border-dashed border-border bg-transparent" : "bg-primary")} />
-            )}
-            <span className={cn(
-              "relative z-10 grid h-10 w-10 place-items-center rounded-full border-2",
-              s.state === "completed" && "border-primary bg-primary text-primary-foreground",
-              s.state === "current" && "border-primary bg-primary-soft text-primary ring-4 ring-primary-soft",
-              s.state === "upcoming" && "border-dashed border-border bg-muted text-muted-foreground",
-            )}>
-              {s.state === "completed" ? <Check className="h-5 w-5" /> : s.state === "current" ? <span className="h-2.5 w-2.5 rounded-full bg-primary" /> : <Award className="h-4 w-4" />}
-            </span>
-            <span className={cn("mt-3 text-sm font-semibold", s.state === "upcoming" && "text-muted-foreground")}>{s.label}</span>
-            <span className={cn("mt-1 text-xs", s.state === "current" ? "font-medium text-primary" : "text-muted-foreground")}>
-              {s.state === "upcoming" && <Lock className="mr-1 inline h-3 w-3" />}{s.note}
-            </span>
-          </li>
-        ))}
+    <section className={cn(card, "h-full p-5")}>
+      <div className="flex items-start gap-3">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary"><Layers className="h-5 w-5" /></span>
+        <div className="min-w-0">
+          <h2 className="text-lg font-bold">My Learning Journey</h2>
+          <p className="text-sm text-muted-foreground">A structured path to build your knowledge and meet role requirements.</p>
+        </div>
+      </div>
+      <ol className="mt-4 grid grid-cols-4">
+        {journey.map((s, i) => {
+          const prevDone = i > 0 && journey[i - 1].state === "completed";
+          return (
+            <li key={s.label} className={cn("relative flex flex-col items-center rounded-lg px-1 pb-2 text-center", s.state === "current" && "bg-primary-soft")}>
+              {i > 0 && (
+                <span className={cn("absolute right-1/2 top-[18px] h-0.5 w-full",
+                  s.state === "completed" ? "bg-success" : s.state === "current" && prevDone ? "bg-primary" : "bg-border")} />
+              )}
+              <span className={cn(
+                "relative z-10 grid h-9 w-9 place-items-center rounded-full",
+                s.state === "completed" && "bg-success text-primary-foreground",
+                s.state === "current" && "border-[3px] border-primary bg-card",
+                s.state === "upcoming" && "bg-muted text-muted-foreground",
+              )}>
+                {s.state === "completed" ? <Check className="h-5 w-5" /> : s.state === "upcoming" ? <Lock className="h-4 w-4" /> : null}
+              </span>
+              <span className="mt-2 text-sm font-bold">{s.label}</span>
+              <span className={cn("text-xs leading-snug", s.state === "current" ? "text-primary" : "text-muted-foreground")}>{stageDesc[s.label] ?? s.note}</span>
+            </li>
+          );
+        })}
       </ol>
     </section>
   );
@@ -85,23 +104,23 @@ export function LearningJourney() {
 
 export function NextModuleCard() {
   return (
-    <section className={cn(card, "flex flex-col gap-5 p-5 sm:flex-row")}>
+    <section className={cn(card, "flex h-full gap-4 p-5")}>
       <div className="flex min-w-0 flex-1 gap-4">
-        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-border text-primary"><Play className="h-5 w-5" /></div>
+        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary"><Play className="h-5 w-5" /></div>
         <div className="min-w-0">
-          <p className="text-lg font-bold">Next Up</p>
-          <p className="text-lg font-bold text-primary">{nextModule.title}</p>
+          <p className="text-lg font-bold leading-tight">Next Up</p>
+          <p className="text-lg font-bold leading-tight">{nextModule.title}</p>
           <p className="text-sm text-muted-foreground">In {nextModule.path}</p>
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-2"><BookOpen className="h-4 w-4" />{nextModule.module}</span>
             <span className="inline-flex items-center gap-2"><Calendar className="h-4 w-4" />Due: {nextModule.due}</span>
           </div>
-          <button className="mt-5 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 font-semibold text-primary-foreground hover:bg-primary-deep">
+          <button className="mt-4 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2 font-semibold text-primary-foreground hover:bg-primary-deep">
             Open module <ArrowRight className="h-4 w-4" />
           </button>
         </div>
       </div>
-      <img src={moduleImg} alt="Signing a motor insurance claim form" loading="lazy" width={896} height={752} className="h-44 w-full rounded-lg object-cover sm:w-48" />
+      <img src={moduleImg} alt="Signing a motor insurance claim form" loading="lazy" width={896} height={752} className="hidden h-40 w-52 shrink-0 rounded-lg object-cover sm:block" />
     </section>
   );
 }
@@ -109,19 +128,20 @@ export function NextModuleCard() {
 const quick = [
   { title: "Explore Library", desc: "Policies, procedures and reference materials", icon: Library },
   { title: "My Learning", desc: "Your enrolled learning paths", icon: GraduationCap },
+  { title: "Saved Resources", desc: "Your bookmarks and quick access", icon: Bookmark },
   { title: "Notices", desc: "Updates and announcements", icon: Bell },
 ];
 
 export function QuickAccess() {
   return (
-    <section>
+    <section className={cn(card, "h-full p-4")}>
       <h2 className="mb-3 text-lg font-bold">Quick Access</h2>
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {quick.map(({ title, desc, icon: Icon }) => (
-          <button key={title} className={cn(card, "p-5 text-left transition hover:border-primary/40")}>
-            <span className="grid h-9 w-9 place-items-center rounded-md bg-primary-soft text-primary"><Icon className="h-5 w-5" /></span>
-            <p className="mt-3 font-semibold">{title}</p>
-            <p className="text-sm text-muted-foreground">{desc}</p>
+          <button key={title} className="rounded-lg border border-border bg-card p-3 text-left transition hover:border-primary/40">
+            <span className="grid h-8 w-8 place-items-center rounded-md bg-primary-soft text-primary"><Icon className="h-4 w-4" /></span>
+            <p className="mt-2 text-sm font-semibold leading-tight">{title}</p>
+            <p className="mt-0.5 text-xs text-muted-foreground">{desc}</p>
           </button>
         ))}
       </div>
@@ -131,19 +151,19 @@ export function QuickAccess() {
 
 export function FeaturedResources() {
   return (
-    <section>
+    <section className={cn(card, "h-full p-4")}>
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-lg font-bold">Featured Resources</h2>
         <button className="inline-flex items-center gap-1 text-sm font-semibold text-primary">View library <ArrowRight className="h-4 w-4" /></button>
       </div>
-      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {resources.map((r) => (
-          <article key={r.title} className={cn(card, "overflow-hidden")}>
+          <article key={r.title} className="overflow-hidden rounded-lg border border-border bg-card">
             <div className="relative">
-              <img src={r.image} alt={r.title} loading="lazy" width={992} height={672} className="h-28 w-full object-cover" />
-              <span className="absolute bottom-2 left-2 rounded bg-card px-2 py-0.5 text-[11px] font-semibold text-primary">{r.category}</span>
+              <img src={r.image} alt={r.title} loading="lazy" width={992} height={672} className="h-20 w-full object-cover" />
+              <span className="absolute bottom-1.5 left-2 rounded bg-card px-2 py-0.5 text-[11px] font-semibold text-primary">{r.category}</span>
             </div>
-            <p className="p-3 text-sm font-semibold leading-snug">{r.title}</p>
+            <p className="px-3 py-2 text-sm font-semibold leading-snug">{r.title}</p>
           </article>
         ))}
       </div>
@@ -151,38 +171,31 @@ export function FeaturedResources() {
   );
 }
 
+const noticeIcons = [Megaphone, Calendar, Info];
+
 export function RecentNotices() {
   return (
-    <section className={cn(card, "p-5")}>
-      <div className="mb-3 flex items-center justify-between">
+    <section className={cn(card, "h-full p-4")}>
+      <div className="mb-2 flex items-center justify-between">
         <h2 className="text-lg font-bold">Recent Notices</h2>
-        <button className="text-sm font-semibold text-primary underline">View all</button>
+        <button className="inline-flex items-center gap-1 text-sm font-semibold text-primary">View all <ArrowRight className="h-4 w-4" /></button>
       </div>
       {notices.length === 0 ? (
         <p className="py-6 text-center text-sm text-muted-foreground">No notices right now.</p>
       ) : (
         <ul className="divide-y divide-border">
-          {notices.map((n) => (
-            <li key={n.title} className="flex items-start gap-3 py-3">
-              <Bell className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-              <span className="min-w-0 flex-1 text-sm">{n.title}</span>
-              <span className="shrink-0 text-xs text-muted-foreground">{n.date}</span>
-            </li>
-          ))}
+          {notices.map((n, i) => {
+            const Icon = noticeIcons[i % noticeIcons.length];
+            return (
+              <li key={n.title} className="flex items-center gap-3 py-2.5">
+                <Icon className="h-4 w-4 shrink-0 text-primary" />
+                <span className="min-w-0 flex-1 truncate text-sm">{n.title}</span>
+                <span className="shrink-0 text-xs text-muted-foreground">{n.date}</span>
+              </li>
+            );
+          })}
         </ul>
       )}
-    </section>
-  );
-}
-
-export function CertificateTeaser() {
-  return (
-    <section className="flex items-center gap-4 rounded-xl border border-border bg-primary-soft p-5">
-      <Award className="h-10 w-10 shrink-0 text-primary" strokeWidth={1.5} />
-      <div>
-        <p className="font-bold">Build your expertise</p>
-        <p className="text-sm text-muted-foreground">Complete your learning paths and earn your certificate (coming soon).</p>
-      </div>
     </section>
   );
 }

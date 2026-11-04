@@ -27,29 +27,26 @@ function Index() {
   const user = mockUsers[role];
   return (
     <AppShell user={user} onRoleChange={setRole}>
-      <div className="mx-auto max-w-[1400px] space-y-6">
+      <div className="mx-auto max-w-[1440px] space-y-4">
         {role === "admin" ? (
           <div>
-            <WelcomeBanner name={user.firstName} withStats subtitle="Your learning, library and knowledge hub at SUNU Assurances Nigeria." />
+            <WelcomeBanner name={user.firstName} withStats />
             <AdminStats />
           </div>
         ) : (
           <WelcomeBanner name={user.firstName} />
         )}
-        <div className="grid gap-6 xl:grid-cols-2">
+        <div className="grid gap-4 lg:grid-cols-2">
           <LearningProgressCard />
-          <NextModuleCard />
+          <LearningJourney />
         </div>
-        <LearningJourney />
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-          <div className="min-w-0 space-y-6">
-            <QuickAccess />
-            <FeaturedResources />
-          </div>
-          <div className="min-w-0 space-y-6">
-            <RecentNotices />
-            <CertificateTeaser />
-          </div>
+        <div className="grid gap-4 lg:grid-cols-2">
+          <NextModuleCard />
+          <QuickAccess />
+        </div>
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,7fr)_minmax(0,3fr)]">
+          <FeaturedResources />
+          <RecentNotices />
         </div>
       </div>
     </AppShell>
