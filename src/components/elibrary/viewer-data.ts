@@ -64,7 +64,7 @@ export function getViewerDoc(id: string): ViewerDoc | null {
     .slice(0, 3);
   return {
     resource,
-    subtitle: subtitles[resource.type],
+    subtitle: subtitles[resource.type] ?? resource.type,
     version: id === "claims-intake" ? "2.0" : "1.0",
     kind: id === "claims-intake" ? "paged" : kind,
     requiresAcknowledgement: needsAcknowledgement(resource),

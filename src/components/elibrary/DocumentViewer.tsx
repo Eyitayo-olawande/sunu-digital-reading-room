@@ -41,7 +41,7 @@ export function DocumentViewer({ doc, canManage }: { doc: ViewerDoc; canManage: 
   const go = (n: number) => setPage(Math.min(total, Math.max(1, n)));
   const stepZoom = (d: 1 | -1) => setZoom((z) => {
     const i = ZOOMS.findIndex((v) => v >= z);
-    return ZOOMS[Math.min(ZOOMS.length - 1, Math.max(0, (i === -1 ? ZOOMS.length - 1 : i) + d))];
+    return ZOOMS[Math.min(ZOOMS.length - 1, Math.max(0, (i === -1 ? ZOOMS.length - 1 : i) + d))]!;
   });
   const fitWidth = () => {
     const w = stageRef.current?.clientWidth ?? BASE_W;
@@ -176,7 +176,7 @@ export function DocumentViewer({ doc, canManage }: { doc: ViewerDoc; canManage: 
             <div className="ml-auto flex items-center gap-1 sm:gap-2">
               {zoomable && (
                 <div className="flex items-center rounded-lg border border-border">
-                  <ToolBtn label="Zoom out" onClick={() => stepZoom(-1)} disabled={zoom <= ZOOMS[0]}><Minus className="h-4 w-4" /></ToolBtn>
+                  <ToolBtn label="Zoom out" onClick={() => stepZoom(-1)} disabled={zoom <= 50}><Minus className="h-4 w-4" /></ToolBtn>
                   <span className="w-12 text-center text-sm tabular-nums">{zoom}%</span>
                   <ToolBtn label="Zoom in" onClick={() => stepZoom(1)} disabled={zoom >= 200}><Plus className="h-4 w-4" /></ToolBtn>
                 </div>
@@ -205,17 +205,17 @@ export function DocumentViewer({ doc, canManage }: { doc: ViewerDoc; canManage: 
               </div>
             ) : doc.kind === "sheet" ? (
               <div className="mx-auto origin-top-left overflow-hidden rounded-lg border border-border bg-card" style={{ width: BASE_W * zoom / 100 }}>
-                <SheetView page={doc.pages[0]} scale={zoom / 100} />
+                <SheetView page={doc.pages[0]!} scale={zoom / 100} />
               </div>
             ) : doc.kind === "slides" ? (
               <div className="mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-lg bg-card p-8 shadow-sm">
-                <PageContent page={doc.pages[page - 1]} first={page === 1} title={r.title} subtitle={doc.subtitle} />
+                <PageContent page={doc.pages[page - 1]!} first={page === 1} title={r.title} subtitle={doc.subtitle} />
               </div>
             ) : (
               <div className="mx-auto w-fit">
                 <div className="shrink-0 bg-card shadow-md transition-transform" style={{ width: BASE_W * zoom / 100, minHeight: BASE_W * 1.3 * zoom / 100, transform: rotation ? `rotate(${rotation}deg)` : undefined }}>
                   <div style={{ fontSize: `${zoom / 100}rem` }} className="p-[2.5em]">
-                    <PageContent page={doc.pages[page - 1]} first={page === 1} title={r.title} subtitle={doc.subtitle} />
+                    <PageContent page={doc.pages[page - 1]!} first={page === 1} title={r.title} subtitle={doc.subtitle} />
                   </div>
                 </div>
               </div>
