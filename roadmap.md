@@ -4,7 +4,7 @@
 - [x] Verify desktop, tablet and mobile layouts and module navigation.
 
 # Sign-In
-- [ ] Compact the mobile screen and verify accessible controls.
-- [ ] Remove the book icon beside the SUNU branding.
+- [x] Compact the mobile screen and verify accessible controls.
+- [x] Remove the book icon beside the SUNU branding.
 - [x] Build the isolated visual sign-in screen.
 - [x] Verify requested widths and form controls without authenticating.
