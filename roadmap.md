@@ -1,9 +1,9 @@
 # Administrator Dashboard
-- [ ] Use the supplied maroon-swoosh office background as a separate clipped layer.
-- [ ] Use the supplied collaborative cut-out with heads extending above the banner.
-- [ ] Match the administrator master using existing imagery and supported records.
-- [ ] Test metric rules, supported shortcuts and requested responsive widths.
-- [ ] Identify unavailable live organisation records and secure access without changing authentication.
+- [x] Use the supplied maroon-swoosh office background as a separate clipped layer.
+- [x] Use the supplied collaborative cut-out with heads extending above the banner.
+- [x] Match the administrator master using existing imagery and supported records.
+- [x] Test metric rules, supported shortcuts and requested responsive widths.
+- [x] Identify unavailable live organisation records and secure access without changing authentication.
 
 # Stage 4
 - [x] Refine connected journey, module progress display and responsive course rows.
